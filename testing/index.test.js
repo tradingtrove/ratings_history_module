@@ -5,12 +5,25 @@ const app = require('../client/src/components/App');
 //  looks like an integration test
 
 /**
- * Testing get all user endpoint
+ * Testing get /api/ratings/:stockID endpoint
  */
-describe('GET /users', () => {
-  it('respond with json containing a list of all users', (done) => {
+describe('GET /api/ratings/:stockID', () => {
+  it('respond with json containing rating data for one stock', (done) => {
     request(app)
-      .get('/users')
+      .get('/api/ratings/:stockID')
+      .set('Accept', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(200, done);
+  });
+});
+
+/**
+ * Testing get /api/history/:stockID endpoint
+ */
+describe('GET /api/history/:stockID', () => {
+  it('respond with json containing rating data for one stock', (done) => {
+    request(app)
+      .get('/api/history/:stockID')
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .expect(200, done);
