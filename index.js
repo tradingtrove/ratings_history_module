@@ -26,9 +26,9 @@ app.get('/api/ratings/:stockID', function(req, res) {
 
 });
 
-app.get('/api/history/:symbol', function(req, res) {
+app.get('/api/history/:stockID', function(req, res) {
 
-  Purchases.find({ symbol:symbol })
+  Purchases.find({ symbol:req.params.stockID })
     .limit(10)
     .sort({createdAt: -1})
     .exec( (err, buys) => { 
