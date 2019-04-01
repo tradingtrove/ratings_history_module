@@ -26,7 +26,6 @@ app.get('/api/ratings/:stockID', function(req, res) {
 
 });
 
-
 app.get('/api/history/:symbol', function(req, res) {
 
   Purchases.find({ symbol:symbol })
@@ -43,11 +42,6 @@ app.get('/api/history/:symbol', function(req, res) {
     });
 
 });
-
-
-
-
-
 
 app.listen(PORT, () => {
     console.log(`server running at: http://localhost:${PORT}`);
