@@ -11,23 +11,6 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 app.use(express.static(__dirname + '/../client/dist'));
 
-
-app.get('/api/ratings', function(req, res) {
-  
-    Stocks.find({})
-    .limit(10)
-    .sort({createdAt: -1})
-    .exec( (err, stockRatings) => { 
-      if (err) {
-        res.status(500).send('could not find any expert ratings of stocks');
-        throw (err);
-      } 
-      console.log(typeof stockRatings);
-      res.status(200).send(stockRatings);
-    });
-
-});
-
 app.get('/api/ratings/:stockID', function(req, res) {
 
     Stocks
