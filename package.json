@@ -4,7 +4,7 @@
   "description": "all about testing",
   "main": "index.js",
   "scripts": {
-    "test": "jest --verbose ./my-directory",
+    "test": "jest --verbose ./testing",
     "react-dev": "webpack --watch -d",
     "db:setup": "node database-mongodb/seed.js",
     "db:setup2": "node database-mongodb/seed2.js",
