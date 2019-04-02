@@ -4,7 +4,7 @@
   "description": "all about testing",
   "main": "index.js",
   "scripts": {
-    "test": "jest --verbose ./testing",
+    "test": "jest --verbose",
     "react-dev": "webpack --watch -d",
     "db:setup": "node database-mongodb/seed.js",
     "db:setup2": "node database-mongodb/seed2.js",
@@ -13,6 +13,12 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/FiveFinance/ratings_history_module.git"
+  },
+  "babel" : {
+    "presets": [
+      "@babel/preset-env",
+      "@babel/preset-react"
+    ]
   },
   "keywords": [],
   "author": "",
@@ -34,7 +40,6 @@
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-react": "^7.11.0",
-    "jest": "^24.5.0",
     "mongodb-memory-server": "^4.2.1",
     "react-addons-test-utils": "^15.6.2",
     "react-test-renderer": "^16.8.6",
@@ -44,14 +49,13 @@
     "webpack-cli": "^3.3.0"
   },
   "dependencies": {
-    "axios": "^0.18.0",
     "body-parser": "^1.18.3",
     "eslint-config-airbnb": "^17.1.0",
     "express": "^4.16.4",
     "faker": "^4.1.0",
+    "jest": "^24.6.0",
     "mongodb": "^3.2.2",
     "mongoose": "^5.4.20",
-    "moxios": "^0.4.0",
     "mysql": "^2.16.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",

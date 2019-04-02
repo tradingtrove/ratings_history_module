@@ -1,13 +1,6 @@
 const request = require('supertest');
-const express = require('express');
 const myApp = require('../client/src/components/App');
 const Stocks = require('../database-mongodb/Stock');
-
-const app = express();
-const PORT = 3001;
-
-//  https://hackernoon.com/api-testing-using-supertest-1f830ce838f1
-//  looks like an integration test
 
 /**
  * Testing get /api/ratings/:stockID endpoint
@@ -15,7 +8,7 @@ const PORT = 3001;
 describe('GET /api/ratings/:stockID', () => {
   it('respond with json containing rating data for one stock', (done) => {
     request(myApp)
-      .get('/api/ratings/:stockID')
+      .get('/api/ratings/AAPL')
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .expect(200, done);
@@ -28,7 +21,7 @@ describe('GET /api/ratings/:stockID', () => {
 describe('GET /api/history/:stockID', () => {
   it('respond with json containing rating data for one stock', (done) => {
     request(myApp)
-      .get('/api/history/:stockID')
+      .get('/api/history/AAPL')
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .expect(200, done);
@@ -39,59 +32,71 @@ describe('GET /api/history/:stockID', () => {
 /**
  * Testing whether seed.js was successful
  */
+
+//  mock database collections/tables
+const testData = {
+  normalStock: {
+    symbol: 'TSTSTOCK',
+    name: 'Test Stock',
+    recBuy: 4,
+    recHold: 2,
+  },
+  normalStock2: {
+    symbol: 'TESTDENB',
+    recBuy: 8,
+    recHold: 3,
+    recSell: 22,
+    reviewBuy: `BUY After thorough examinations and tests, which came up inconclusive, local news reporters were allowed to interview Chatty Cat to discern its origins and its unusual ability to talk which prompted the cat to issue the following statement:
+
+    “Okay first of all my name is not Catherine, I don’t know where they got that from because my name is Margaret. They just decided that on their own. Second I am not originally from earth. I am from a planet inhabited by cats who possess the ability of speech. I landed on your planet days ago on a goodwill mission only to be captured and renamed. My story begins 9 years ago when I was born, a young simple minded little lass. I grew up poor and with a limited future. It wasn’t until I entered grade school where I met my best friend Elizabeth that I decided to dream bigger, reach for the stars. Who knew I’d end up actually reaching it? Heh...what? Nobody. Come on, that was funny.”
+    
+    After hours of mundane back story it became apparent that Chatty’s Cat’s story is far from over and unlikely to stop anytime soon. We will update the article with new information as the yarn unravels. 
+    `,
+    reviewSell: `SELL After thorough examinations and tests, which came up inconclusive, local news reporters were allowed to interview Chatty Cat to discern its origins and its unusual ability to talk which prompted the cat to issue the following statement:
+    
+    “Okay first of all my name is not Catherine, I don’t know where they got that from because my name is Margaret. They just decided that on their own. Second I am not originally from earth. I am from a planet inhabited by cats who possess the ability of speech. I landed on your planet days ago on a goodwill mission only to be captured and renamed. My story begins 9 years ago when I was born, a young simple minded little lass. I grew up poor and with a limited future. It wasn’t until I entered grade school where I met my best friend Elizabeth that I decided to dream bigger, reach for the stars. Who knew I’d end up actually reaching it? Heh...what? Nobody. Come on, that was funny.”
+    
+    After hours of mundane back story it became apparent that Chatty’s Cat’s story is far from over and unlikely to stop anytime soon. We will update the article with new information as the yarn unravels.
+    `,
+  },
+  normalPurchase: {
+    symbol: 'TSTSTOCK',
+    name: 'Test STock',
+    status: 'filled',
+  },
+};
+
+
 describe('Test the removeStock method', () => {
-    let stock;
-
-    const testDBURL = 'mongodb://127.0.0.1:27017/fec_ratings';
-
-    const testData = {
-        normalStock: {
-            symbol: 'TSTSTOCK',
-            name: 'Test Stock', 
-            recBuy: 4,
-            recHold: 2,
+  beforeAll(() => { });
+  beforeEach(() => {
+    const stock = new Stocks(testData.normalStock);
+    //  const stock = new Stocks(testData.normalStock2);
+    //  const stock = new Stocks(testData.normalPurchase);
+    return stock.save();
+  });
+  afterEach(() => {
+    Stocks
+      .deleteOne({ symbol: 'TSTSTOCK' })
+      .exec((err) => {
+        if (err) {
+          throw (err);
         }
-    }
-
-    beforeAll(() => {
-        mongoose.connect(testDBURL);
-    });
-    beforeEach(() => {
-        stock = new StockModel(testData.normalStock);
-        return stock.save();
-    });
-    afterEach(() => {
-        Stocks
-          .deleteOne({ symbol: 'TSTSTOCK' })
-          .exec((err) => {
-            if (err) {
-                throw (err)
-            }
-          });
-    });
-    afterAll((done) => {
-        mongoose.disconnect(done);
-    });
+      });
+  });
+  afterAll((done) => { done(); });
 });
 
 describe('Seed stocks collection in fec_ratings database', () => {
-  it('respond with the symbol name as a String type', (done) => {
-    app.get('/api/ratings/AAPL', (req, res) => {
-      Stocks
-        .findOne({ symbol: 'TSTSTOCK' })
-        .exec((err, data) => {
-          if (err) {
-            res.status(500).send(err);
-            throw (err);
-          }
-          expect(data).toHaveProperty.(name, 'Test Stock');
-          done();
-          res.status(200).send(data);
-        });
-    });
+  it('Should respond with data having the correct keyPath and value', (done) => {
+    Stocks
+      .findOne({ symbol: 'TSTSTOCK' })
+      .exec((err, data) => {
+        if (err) {
+          throw (err);
+        }
+        expect(data).toHaveProperty('name', 'Test Stock');
+        done();
+      });
   });
-});
-
-app.listen(PORT, () => {
-  console.log(`server running at: http://localhost:${PORT}`);
 });
