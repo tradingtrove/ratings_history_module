@@ -14,6 +14,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'client/dist')));
 
 app.get('/api/ratings/:stockID', (req, res) => {
+  console.log('stock ratings get');
   //controller.getStocks(req.params.stockID)
   Stock
     .findOne({ symbol: req.params.stockID })
@@ -21,7 +22,7 @@ app.get('/api/ratings/:stockID', (req, res) => {
       if (err) {
         console.log(`Error: ${err}`);
         res.status(500).send(err);
-        return;
+        throw (err);
       }
       res.status(200).send(data);
     });
@@ -29,18 +30,17 @@ app.get('/api/ratings/:stockID', (req, res) => {
 
 app.get('/api/history/:stockID', (req, res) => {
   //controller.getPurchases(req.params.stockID)
+  console.log('purchases get');
   Purchase
-    .findOne({ symbol: req.params.stockID })
-    .limit(10)
-    .sort({ createdAt: -1 })
-    .exec((err, buys) => {
-      if (err) {
-        console.log(`Error: could not find any past purchases, ${err}`);
-        res.status(500).send();
-        return;
-      }
-      res.status(200).send(buys);
-    });
+    .findOne({ symbol: req.params.stockID }
+      .exec((err, buys) => {
+        if (err) {
+          console.log(`Error: could not find any past purchases, ${err}`);
+          res.status(500).send();
+          throw (err);
+        }
+        res.status(200).send(buys);
+      }));
 });
 
 app.listen(PORT, () => {
