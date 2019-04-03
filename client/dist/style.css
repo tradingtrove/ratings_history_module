@@ -1,0 +1,152 @@
+.search {
+    width: 1024px;
+    height: 64px;
+    background-image: url('lib/robinhood-search-sm.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: flex;
+    align-self: left;
+}
+
+@font-face {
+    font-family: DIN Pro;
+    font-weight: normal;
+    src: url("lib/DINPro\ Regular.otf") format("opentype");
+}
+
+@font-face {
+    font-family: DIN Pro;
+    font-weight: bold;
+    src: url("lib/DIN Alternate\ Bold.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: DIN Pro;
+    font-weight: 300;
+    src: url("lib/DIN\ Condensed\ Bold.ttf") format("truetype");
+}
+
+body {
+    font-family: "DIN Pro", -apple-system, system-ui, sans-serif;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 19px;
+    text-align: start;  
+    letter-spacing: 0.25px; 
+    color: #171718;
+}
+
+
+._11WRmmT0c39X6z9no-GHsEmoduleheader {
+    font-family: "DIN Pro", -apple-system, system-ui, sans-serif;
+    font-weight: normal;
+    font-size: 26px;
+    line-height: 30px;
+    text-align: start;
+    letter-spacing: -0.14px;
+    color: #171718;
+}
+
+
+h2 {
+    font-family: "DIN Pro", -apple-system, system-ui, sans-serif;
+    font-weight: normal;
+    font-size: 26px;
+    line-height: 30px;
+    text-align: start;
+    letter-spacing: -0.14px;
+    color: #21ce99;
+}
+
+p {
+    font-family: "DIN Pro", -apple-system, system-ui, sans-serif;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 19px;
+    text-align: center;
+    letter-spacing: 0.2px;
+    color: #21ce99;
+}
+
+h4 {
+    font-family: "DIN Pro", -apple-system, system-ui, sans-serif;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 19px;
+    text-align: start;
+    letter-spacing: 0.25px;
+    color: #171718;
+}
+
+._39JSOpdNl9lgJpdf_J3WcYbuyholdsell {
+    width: 34px;
+    height: 19px;
+}
+.aQ1AnaHuB4GpqcR6Mpso1percentage {   
+}
+._3zc330R5cwW6gKoImD6AIvBarsLong {
+    width: 426px;
+    height: 6px;
+    background: linear-gradient(0.25turn, #rgba(33, 206, 153, 0.05), #rgba(33, 206, 153, 0.15));
+}
+._3rEcIJAdObKQ7uMT6YxUk6reviewBG {
+    padding: 24px;
+    width: 224px;
+    height: 190px;
+    background-color: rgba(23, 23, 24, 0.3);
+}
+
+.OjNSjSbJmDliL-he4BWbjSpotlightBG {
+    width: 134px;
+    height: 134px;
+    border-radius: 50%;
+    color: rgba(33, 206, 153, 0.30);
+}
+
+h3 {
+    font-family: "DIN Pro", -apple-system, system-ui, sans-serif;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 22px;
+    text-align: start;
+    letter-spacing: normal;
+}
+
+._1o4PJLud46X1hGKRyPgyLIhistorybody {
+    font-family: "DIN Pro", -apple-system, system-ui, sans-serif;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 19px;
+    text-align: start;
+    letter-spacing: 0.25px;
+}
+._3QG5sYEMe4Xs6188iqbZ5Khistoryem {
+    font-family: "DIN Pro", -apple-system, system-ui, sans-serif;
+    font-weight: bold;
+    font-size: 13px;
+    line-height: 19px;
+    text-align: start;
+    letter-spacing: 0.25px;
+}
+
+
+#credit {
+    color: #cbcbcd;
+}
+#accent {
+    color: #21ce99;
+}
+a {
+    color: #21ce99;
+}
+a:hover {
+    color: #1ae9aa;
+    transition-duration: 300ms;
+}
+
+.caption {
+    color: #21ce99;
+}
+.caption:hover {
+    color: 1ae9aa
+}
