@@ -13,9 +13,18 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, 'client/dist')));
 
+app.get('/api/ratings', (req, res) => {
+  Stock.find({})
+    .exec((err, stockRatings) => { 
+      if (err) {
+        res.status(500).send('could not find any expert ratings of stocks');
+        throw (err);
+      }
+      res.status(200).send(stockRatings);
+    });
+});
+
 app.get('/api/ratings/:stockID', (req, res) => {
-  console.log('stock ratings get');
-  //controller.getStocks(req.params.stockID)
   Stock
     .findOne({ symbol: req.params.stockID })
     .exec((err, data) => {
@@ -29,23 +38,20 @@ app.get('/api/ratings/:stockID', (req, res) => {
 });
 
 app.get('/api/history/:stockID', (req, res) => {
-  //controller.getPurchases(req.params.stockID)
-  console.log('purchases get');
   Purchase
-    .findOne({ symbol: req.params.stockID }
-      .exec((err, buys) => {
-        if (err) {
-          console.log(`Error: could not find any past purchases, ${err}`);
-          res.status(500).send();
-          throw (err);
-        }
-        res.status(200).send(buys);
-      }));
+    .findOne({ symbol: req.params.stockID })
+    .exec((err, data) => {
+      if (err) {
+        console.log(`Error: ${err}`);
+        res.status(500).send(err);
+        throw (err);
+      }
+      res.status(200).send(data);
+    });
 });
 
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log(`server running at: http://localhost:${PORT}`);
 });
 
-//  const server = app.listen
-//  module.exports = { server, app };
+module.exports = { server, app };
