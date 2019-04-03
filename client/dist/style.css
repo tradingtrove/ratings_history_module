@@ -36,15 +36,30 @@ body {
     color: #171718;
 }
 
+.temp {
+    width:700px;
+}
+
+.flex-container {
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+}
+.module-container {
+    width: 660px;
+    padding-left: 40px;
+}
 
 ._11WRmmT0c39X6z9no-GHsEmoduleheader {
     font-family: "DIN Pro", -apple-system, system-ui, sans-serif;
-    font-weight: normal;
+    font-weight: bold;
     font-size: 26px;
     line-height: 30px;
     text-align: start;
     letter-spacing: -0.14px;
     color: #171718;
+    border-bottom: 1px solid rgba(23, 23, 24, 0.04);
+    padding: 16px 0px;
 }
 
 
@@ -53,7 +68,7 @@ h2 {
     font-weight: normal;
     font-size: 26px;
     line-height: 30px;
-    text-align: start;
+    text-align: center;
     letter-spacing: -0.14px;
     color: #21ce99;
 }
@@ -82,25 +97,58 @@ h4 {
     width: 34px;
     height: 19px;
 }
-.aQ1AnaHuB4GpqcR6Mpso1percentage {   
-}
+
 ._3zc330R5cwW6gKoImD6AIvBarsLong {
     width: 426px;
     height: 6px;
-    background: linear-gradient(0.25turn, #rgba(33, 206, 153, 0.05), #rgba(33, 206, 153, 0.15));
+    background: linear-gradient(0.25turn, rgba(33, 206, 153, 0.05), rgba(33, 206, 153, 0.15));
+    border-radius: 4px 0 0 4px;
+    height: 100%;
+    margin-bottom: 24px;
+
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
 }
+.reviews-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
 ._3rEcIJAdObKQ7uMT6YxUk6reviewBG {
+    display: flex;
     padding: 24px;
     width: 224px;
-    height: 190px;
-    background-color: rgba(23, 23, 24, 0.3);
+    height: auto;
+    background-color: rgba(23, 23, 24, 0.02);
+}
+
+blockquote {
+    display: inline;
+}
+
+blockquote:before {
+    content: open-quote;
+}
+
+blockquote:after {
+    content: close-quote;
+}
+
+blockquote:before,
+blockquote:after {
+  color: #171718;
+
 }
 
 .OjNSjSbJmDliL-he4BWbjSpotlightBG {
     width: 134px;
     height: 134px;
     border-radius: 50%;
-    color: rgba(33, 206, 153, 0.30);
+    background-color: rgba(33, 206, 153, 0.30);
 }
 
 h3 {
@@ -138,6 +186,7 @@ h3 {
 }
 a {
     color: #21ce99;
+    text-decoration: none;
 }
 a:hover {
     color: #1ae9aa;
@@ -145,8 +194,16 @@ a:hover {
 }
 
 .caption {
-    color: #21ce99;
+    color: #cbcbcd;
 }
 .caption:hover {
-    color: 1ae9aa
+    color: #cbcbcd;
+}
+
+
+._2dd7UBEjupbjwapwV9x2ys {
+    border-style: solid;
+    border-width: 1px;
+    border-color: #cbcbcd;
+
 }
