@@ -7,3 +7,203 @@
     display: flex;
     align-self: left;
 }
+
+@font-face {
+    font-family: DIN Pro;
+    font-weight: normal;
+    src: url("lib/DINPro\ Regular.otf") format("opentype");
+}
+
+@font-face {
+    font-family: DIN Pro;
+    font-weight: bold;
+    src: url("lib/DIN Alternate\ Bold.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: DIN Pro;
+    font-weight: 300;
+    src: url("lib/DIN\ Condensed\ Bold.ttf") format("truetype");
+}
+
+body {
+    font-family: "DIN Pro", -apple-system, system-ui, sans-serif;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 19px;
+    text-align: start;  
+    letter-spacing: 0.25px; 
+    color: #171718;
+}
+
+.temp {
+    width:700px;
+}
+
+.flex-container {
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+}
+.module-container {
+    width: 660px;
+    padding-left: 40px;
+}
+
+._11WRmmT0c39X6z9no-GHsEmoduleheader {
+    font-family: "DIN Pro", -apple-system, system-ui, sans-serif;
+    font-weight: bold;
+    font-size: 26px;
+    line-height: 30px;
+    text-align: start;
+    letter-spacing: -0.14px;
+    color: #171718;
+    border-bottom: 1px solid rgba(23, 23, 24, 0.04);
+    padding: 16px 0px;
+}
+
+
+h2 {
+    font-family: "DIN Pro", -apple-system, system-ui, sans-serif;
+    font-weight: normal;
+    font-size: 26px;
+    line-height: 30px;
+    text-align: center;
+    letter-spacing: -0.14px;
+    color: #21ce99;
+}
+
+p {
+    font-family: "DIN Pro", -apple-system, system-ui, sans-serif;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 19px;
+    text-align: center;
+    letter-spacing: 0.2px;
+    color: #21ce99;
+}
+
+h4 {
+    font-family: "DIN Pro", -apple-system, system-ui, sans-serif;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 19px;
+    text-align: start;
+    letter-spacing: 0.25px;
+    color: #171718;
+}
+
+._39JSOpdNl9lgJpdf_J3WcYbuyholdsell {
+    width: 34px;
+    height: 19px;
+}
+
+._3zc330R5cwW6gKoImD6AIvBarsLong {
+    width: 426px;
+    height: 6px;
+    background: linear-gradient(0.25turn, rgba(33, 206, 153, 0.05), rgba(33, 206, 153, 0.15));
+    border-radius: 4px 0 0 4px;
+    height: 100%;
+    margin-bottom: 24px;
+
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+.reviews-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+._3rEcIJAdObKQ7uMT6YxUk6reviewBG {
+    display: flex;
+    padding: 24px;
+    width: 224px;
+    height: auto;
+    background-color: rgba(23, 23, 24, 0.02);
+}
+
+blockquote {
+    display: inline;
+}
+
+blockquote:before {
+    content: open-quote;
+}
+
+blockquote:after {
+    content: close-quote;
+}
+
+blockquote:before,
+blockquote:after {
+  color: #171718;
+
+}
+
+.OjNSjSbJmDliL-he4BWbjSpotlightBG {
+    width: 134px;
+    height: 134px;
+    border-radius: 50%;
+    background-color: rgba(33, 206, 153, 0.30);
+}
+
+h3 {
+    font-family: "DIN Pro", -apple-system, system-ui, sans-serif;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 22px;
+    text-align: start;
+    letter-spacing: normal;
+}
+
+._1o4PJLud46X1hGKRyPgyLIhistorybody {
+    font-family: "DIN Pro", -apple-system, system-ui, sans-serif;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 19px;
+    text-align: start;
+    letter-spacing: 0.25px;
+}
+._3QG5sYEMe4Xs6188iqbZ5Khistoryem {
+    font-family: "DIN Pro", -apple-system, system-ui, sans-serif;
+    font-weight: bold;
+    font-size: 13px;
+    line-height: 19px;
+    text-align: start;
+    letter-spacing: 0.25px;
+}
+
+
+#credit {
+    color: #cbcbcd;
+}
+#accent {
+    color: #21ce99;
+}
+a {
+    color: #21ce99;
+    text-decoration: none;
+}
+a:hover {
+    color: #1ae9aa;
+    transition-duration: 300ms;
+}
+
+.caption {
+    color: #cbcbcd;
+}
+.caption:hover {
+    color: #cbcbcd;
+}
+
+
+._2dd7UBEjupbjwapwV9x2ys {
+    border-style: solid;
+    border-width: 1px;
+    border-color: #cbcbcd;
+
+}

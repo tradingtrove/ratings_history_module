@@ -1,8 +1,11 @@
 import React from 'react';
+import RatingsModule from './RatingsApp';
+import HistoryModule from './HistoryApp';
 
 const App = () => (
-  <div>
-    <h1>Robinhood Expert Ratings Module</h1>
+  <div className="module-container">
+    <RatingsModule />
+    <HistoryModule />
   </div>
 );
 

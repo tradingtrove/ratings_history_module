@@ -1,8 +1,9 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
-const Stocks = require('./database-mongodb/Stock.js');
-const Purchases = require('./database-mongodb/Stock2.js');
+const controller = require('./controller');
+const Stock = require('./database-mongodb/Stock.js');
+const Purchase = require('./database-mongodb/Stock2.js');
 
 const app = express();
 const PORT = 3001;
@@ -10,10 +11,21 @@ const PORT = 3001;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use(express.static(path.join(__dirname, '/../client/dist')));
+app.use(express.static(path.join(__dirname, 'client/dist')));
+
+app.get('/api/ratings', (req, res) => {
+  Stock.find({})
+    .exec((err, stockRatings) => { 
+      if (err) {
+        res.status(500).send('could not find any expert ratings of stocks');
+        throw (err);
+      }
+      res.status(200).send(stockRatings);
+    });
+});
 
 app.get('/api/ratings/:stockID', (req, res) => {
-  Stocks
+  Stock
     .findOne({ symbol: req.params.stockID })
     .exec((err, data) => {
       if (err) {
@@ -26,20 +38,20 @@ app.get('/api/ratings/:stockID', (req, res) => {
 });
 
 app.get('/api/history/:stockID', (req, res) => {
-  Purchases.find({ symbol: req.params.stockID })
-    .limit(10)
-    .sort({ createdAt: -1 })
-    .exec((err, buys) => {
+  Purchase
+    .findOne({ symbol: req.params.stockID })
+    .exec((err, data) => {
       if (err) {
-        console.log('could not find any past purchases');
-        res.status(500).send();
+        console.log(`Error: ${err}`);
+        res.status(500).send(err);
         throw (err);
       }
-      console.log(typeof buys);
-      res.status(200).send(buys);
+      res.status(200).send(data);
     });
 });
 
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log(`server running at: http://localhost:${PORT}`);
 });
+
+module.exports = { server, app };
