@@ -7,7 +7,7 @@
   "scripts": {
     "test": "jest --detectOpenHandles",
     "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage --watch",
+    "test:coverage": "jest --collectCoverage --watch",
     "react-dev": "webpack --watch -d",
     "db:setup": "node database-mongodb/seed.js",
     "db:setup2": "node database-mongodb/seed2.js",
@@ -41,6 +41,7 @@
     "css-loader": "^2.1.1",
     "eslint": "^4.19.1",
     "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jest": "^22.4.1",
     "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-react": "^7.11.0",
     "jest": "^24.6.0",
