@@ -7,9 +7,9 @@ class HistoryApp extends React.Component {
     this.state = {
       purchases: [
         {
-          symbol: 'MSFT',
+          symbol: 'AAPL',
           purchase_id: 752,
-          name: 'Microsoft, Inc.',
+          name: 'Apple',
           timeinforce: 'Good for day',
           submitted: '2016-09-24T00:51:08',
           status: 'filled',
@@ -33,12 +33,12 @@ class HistoryApp extends React.Component {
   }
 
 
-  updatePurchases(data) {
-    this.setState = ({
-      purchases: data,
-      loading: false,
-    });
-  }
+  // updatePurchases(data) {
+  //   this.setState = ({
+  //     purchases: data,
+  //     loading: false,
+  //   });
+  // }
 
   render() {
     return (

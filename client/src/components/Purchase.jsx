@@ -8,7 +8,8 @@ class Purchase extends React.Component {
   }
 
   render() {
-    const { symbol } = this.props.purchase;
+    const { purchase } = this.props;
+    const { symbol } = purchase;
     return (
       <div className="_2dd7UBEjupbjwapwV9x2ys">
         {this.title}
@@ -21,6 +22,7 @@ class Purchase extends React.Component {
 }
 
 Purchase.propTypes = {
+  purchase: PropTypes.string.isRequired,
   symbol: PropTypes.string.isRequired,
 };
 

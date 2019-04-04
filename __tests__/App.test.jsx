@@ -1,6 +1,6 @@
 import { shallow } from 'enzyme';
-import App from '../client/src/components/App';
 import React from 'react';
+import App from '../client/src/components/App';
 
 
 test('App was rendered', () => {

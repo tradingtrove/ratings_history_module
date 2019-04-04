@@ -21,6 +21,17 @@ class RatingsApp extends React.Component {
     };
   }
 
+    async componentDidMount() {
+    const url = 'localhost:3001/api/ratings/AAPL';
+    const response = await fetch(url);
+    const data = await response.json();
+    console.log(data);
+    // this.setState = ({ 
+    //   stocks: data, 
+    //   loading: false,
+    // });
+  }
+
   render() {
     return (
       <div>
