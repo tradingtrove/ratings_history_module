@@ -4,8 +4,12 @@ import HistoryModule from './HistoryApp';
 
 const App = () => (
   <div className="module-container">
-    <RatingsModule />
-    <HistoryModule />
+    <section>
+      <RatingsModule />
+    </section>
+    <section>
+      <HistoryModule />
+    </section>
   </div>
 );
 

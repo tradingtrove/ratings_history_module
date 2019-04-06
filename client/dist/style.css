@@ -50,16 +50,16 @@ body {
     padding-left: 40px;
 }
 
-._11WRmmT0c39X6z9no-GHsEmoduleheader {
+.moduleheader {
     font-family: "DIN Pro", -apple-system, system-ui, sans-serif;
     font-weight: bold;
     font-size: 26px;
     line-height: 30px;
     text-align: start;
     letter-spacing: -0.14px;
-    color: #171718;
-    border-bottom: 1px solid rgba(23, 23, 24, 0.04);
-    padding: 16px 0px;
+    border-bottom: 1px solid;
+    border-color: #f4f4f5;
+    padding-bottom: 16px;
 }
 
 
@@ -71,6 +71,7 @@ h2 {
     text-align: center;
     letter-spacing: -0.14px;
     color: #21ce99;
+    margin: 0 0 16px;
 }
 
 p {
@@ -113,43 +114,74 @@ h4 {
     display: -ms-flexbox;
     display: flex;
 }
-.reviews-container {
+
+section {
+    margin-bottom: 60px;
+    -webkit-transition: background 300ms;
+    transition: background 300ms;
+}
+
+
+.row {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: flex-end;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    margin: 0 -6px;
+  }
+  
+  .row > * {
+    display: block;
+    padding-left: 6px;
+    padding-right: 6px;
+  }
+  
+  .row > *:last-child {
+    margin-right: 0;
+  }
+
+.RatingsLeft {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-negative: 0;
+            flex-shrink: 0;
+        -webkit-box-pack: center;
+            -ms-flex-pack: center;
+                justify-content: center;
+        width: 218.22222px;
+}
+.RatingsRight {
+    -webkit-box-flex: 1;
+        -ms-flex-positive: 1;
+            flex-grow: 1;
+}
+
+.reviews-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+.reviews-container > :first-child {
+    margin-right: 12px;
+}
+.reviews-container > * {
+    -ms-flex-preferred-size: 50%;
+    flex-basis: 50%;
 }
 
 ._3rEcIJAdObKQ7uMT6YxUk6reviewBG {
     display: flex;
+    border-radius: 4px 4px 4px 0;
     padding: 24px;
     width: 224px;
     height: auto;
     background-color: rgba(23, 23, 24, 0.02);
 }
 
-blockquote {
-    display: inline;
-}
 
-blockquote:before {
-    content: open-quote;
-}
-
-blockquote:after {
-    content: close-quote;
-}
-
-blockquote:before,
-blockquote:after {
-  color: #171718;
-
-}
-
-.OjNSjSbJmDliL-he4BWbjSpotlightBG {
-    width: 134px;
-    height: 134px;
-    border-radius: 50%;
-    background-color: rgba(33, 206, 153, 0.30);
-}
 
 h3 {
     font-family: "DIN Pro", -apple-system, system-ui, sans-serif;
@@ -207,3 +239,19 @@ a:hover {
     border-color: #cbcbcd;
 
 }
+
+/*---------------------------------*/
+/*  ReviewList  */
+/*---------------------------------*/
+.eachReviewWrapper {
+    border-radius: 4px;
+    margin: 0 -24px;
+    -webkit-transition: background 150ms, margin-bottom 150ms, -webkit-box-shadow 150ms;
+    transition: background 150ms, margin-bottom 150ms, -webkit-box-shadow 150ms;
+    transition: background 150ms, box-shadow 150ms, margin-bottom 150ms;
+    transition: background 150ms, box-shadow 150ms, margin-bottom 150ms, -webkit-box-shadow 150ms;
+    
+    margin-bottom: 12px;
+    position: relative;
+}
+/*---------------------------------*/
