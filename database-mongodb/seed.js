@@ -107,8 +107,9 @@ const symbolsNames = [
 
 for (let i = 0; i < 100; i += 1) {
   const descriptor = faker.company.catchPhraseDescriptor();
-  const descriptor2 = faker.company.catchPhraseDescriptor();
+  const descriptor2 = faker.lorem.sentence();
   const descriptor3 = faker.company.catchPhraseDescriptor();
+  const descriptor4 = faker.lorem.sentence();
   const material = faker.commerce.productMaterial();
   const adjective = faker.commerce.productAdjective();
   const bs1 = faker.company.bs();
@@ -121,8 +122,8 @@ for (let i = 0; i < 100; i += 1) {
     recBuy: faker.random.number(20),
     recHold: faker.random.number(20),
     recSell: faker.random.number(20),
-    reviewBuy: `${material} ${bs1} ${symbolsNames[i][1]} ${descriptor} ${adjective}. \n The ${bs2} ${descriptor2}. \n Overall, ${bs1} ${symbolsNames[i][1]} ${descriptor3}`,
-    reviewSell: `${material} ${bs3} ${descriptor} ${symbolsNames[i][1]} ${adjective}. \n For ${bs4} ${descriptor2}. \n Hence, ${bs3} ${symbolsNames[i][1]} ${descriptor3}`,
+    reviewBuy: `${material} ${bs1} ${symbolsNames[i][1]} ${descriptor} ${adjective}. \n The ${bs2} ${descriptor2}. \n Overall, ${bs1} ${symbolsNames[i][1]} ${descriptor3} ${descriptor4}`,
+    reviewSell: `${material} ${bs3} ${descriptor} ${symbolsNames[i][1]} ${adjective}. \n For ${bs4} ${descriptor2}. \n Hence, ${bs3} ${symbolsNames[i][1]} ${descriptor3} ${descriptor4}`,
   }];
 
   const insertSampleStocks = () => {

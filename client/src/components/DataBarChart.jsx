@@ -1,26 +1,35 @@
 import React from 'react';
+import styled from 'styled-components';
+
+import PercentProgress from './PercentProgress';
 
 class DataBarChart extends React.Component {
   constructor(props) {
     super(props);
-    this.buy = 3;
-    this.hold = 2;
-    this.sell = 8;
-    this.total = this.buy + this.hold + this.sell;
-    this.percentBuy = Math.floor(100 * this.buy / this.total);
-    this.percentHold = Math.floor(100 * this.hold / this.total);
-    this.percentSell = Math.floor(100 * this.sell / this.total);
+    this.state = {
+      market: props.differenceFromStartToToday === 'Negative' ? 'Bear' : 'Bull',
+    };
+    this.total = this.props.stock.recBuy + this.props.stock.recHold + this.props.stock.recSell;
   }
 
   render() {
     return (
-      <div className="_15b0ehqeCQPXuckHxmckqV _2S5LKbv_5B17ogJputIcHb _3NhDi1Y_zCL6iEvhE3Rk7z">
-        <div className="_3zc330R5cwW6gKoImD6AIvBarsLong">{this.percentBuy}</div>
-        <div className="_3zc330R5cwW6gKoImD6AIvBarsLong">{this.percentHold}</div>
-        <div className="_3zc330R5cwW6gKoImD6AIvBarsLong">{this.percentSell}</div>
-      </div>
+      <AllBars>
+        <PercentProgress votes={this.props.stock.recBuy} total={this.total} voteFor="Buy" market={this.state.market} />
+        <PercentProgress votes={this.props.stock.recHold} total={this.total} voteFor="Hold" market={this.state.market} />
+        <PercentProgress votes={this.props.stock.recSell} total={this.total} voteFor="Sell" market={this.state.market} />
+      </AllBars>
     );
   }
 }
+
+const AllBars = styled.div`
+  font-family: "DIN Pro", -apple-system, system-ui, sans-serif;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 19px;
+  letter-spacing: 0.2px;
+  -webkit-text-stroke: 0.8px;
+`;
 
 export default DataBarChart;
