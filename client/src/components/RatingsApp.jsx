@@ -10,9 +10,9 @@ class RatingsApp extends React.Component {
     this.state = {
       stock: {
         symbol: 'TSM',
-        recBuy: 3,
-        recHold: 8,
-        recSell: 13,
+        recBuy: 8,
+        recHold: 11,
+        recSell: 20,
         reviewBuy: 'Plastic granular scale convergence Taiwan Semiconductor Manufacturing Company Limited local Ergonomic. \n The impactful transform architectures encompassing. \n Overall, granular scale convergence Taiwan Semiconductor Manufacturing Company Limited optimizing',
         reviewSell: 'Plastic B2C target e-tailers local Taiwan Semiconductor Manufacturing Company Limited Ergonomic. \n For B2C implement applications encompassing. \n Hence, B2C target e-tailers Taiwan Semiconductor Manufacturing Company Limited optimizing',
       },
@@ -24,20 +24,36 @@ class RatingsApp extends React.Component {
     return (
       <div>
         <ModuleHeader>Analyst Ratings</ModuleHeader>
-        <Top>
-          <DataSpotlight stock={this.state.stock} priceDifferenceFromStartToToday={this.state.priceDifferenceFromStartToToday} />
-          <DataBarChart stock={this.state.stock} priceDifferenceFromStartToToday={this.state.priceDifferenceFromStartToToday} />
-        </Top>
-        <ReviewList stock={this.state.stock} />
+        <Row>
+          <Left>
+            <DataSpotlight stock={this.state.stock} priceDifferenceFromStartToToday={this.state.priceDifferenceFromStartToToday} />
+          </Left>
+          <Right>
+            <DataBarChart stock={this.state.stock} priceDifferenceFromStartToToday={this.state.priceDifferenceFromStartToToday} />
+            <ReviewList stock={this.state.stock} />
+          </Right>
+        </Row>
       </div>
     );
   }
 }
 
-const Top = styled.div`
+const Row = styled.div`
   display: flex;
-  flex: 1 100%;
-  flex-shrink: 1;
+  flex-direction: row;
+  justify-content: flex-start;
+`;
+
+const Left = styled.div`
+  width: 134px;
+  padding: 24px;
+  padding-right: 48px;
+`;
+
+const Right = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 460px;
 `;
 
 const ModuleHeader = styled.div`

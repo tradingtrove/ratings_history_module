@@ -10,9 +10,11 @@ const purchaseSchema = new mongoose.Schema({
   timeinforce: String,
   submitted: Date,
   status: String,
-  entered_quantity: Number,
+  enteredQuantity: Number,
   filled: Date,
-  filled_quantity: Number,
+  filledQuantityShares: Number,
+  filledQuantityPrice: Number,
+  total: Number,
 });
 
 const Purchase = mongoose.model('Purchases', purchaseSchema);

@@ -1,5 +1,6 @@
 import React from 'react';
 import Purchase from './Purchase';
+import styled from 'styled-components';
 
 class HistoryApp extends React.Component {
   constructor() {
@@ -13,9 +14,11 @@ class HistoryApp extends React.Component {
           timeinforce: 'Good for day',
           submitted: '2016-09-24T00:51:08',
           status: 'filled',
-          entered_quantity: 84,
+          enteredQuantity: 84,
           filled: '2018-08-23T16:43:24',
-          filled_quantity: 84,
+          filledQuantityShares: 84,
+          filledQuantityPrice: 84,
+          total: 25,
         },
         {
           symbol: 'AAPL',
@@ -24,14 +27,28 @@ class HistoryApp extends React.Component {
           timeinforce: 'Good for day',
           submitted: '2016-02-19T10:43:43',
           status: 'filled',
-          entered_quantity: 72,
+          enteredQuantity: 72,
           filled: '2017-05-06T02:31:04',
-          filled_quantity: 72,
+          filledQuantityShares: 72,
+          filledQuantityPrice: 14,
+          total: 12.33,
+        },
+        {
+          symbol: 'AAPL',
+          purchase_id: 134,
+          name: 'Apple',
+          timeinforce: 'Good for day',
+          submitted: '2010-05-19T10:43:43',
+          status: 'filled',
+          enteredQuantity: 1,
+          filled: '2010-05-06T02:31:04',
+          filledQuantityShares: 1,
+          filledQuantityPrice: 140,
+          total: 140.33,
         },
       ],
     };
   }
-
 
   // updatePurchases(data) {
   //   this.setState = ({
@@ -41,14 +58,29 @@ class HistoryApp extends React.Component {
   // }
 
   render() {
+    const { purchases } = this.state;
     return (
       <div>
-        <div className="_11WRmmT0c39X6z9no-GHsEmoduleheader">History</div>
-        <Purchase purchase={this.state.purchases[0]} />
-        <Purchase purchase={this.state.purchases[1]} />
+        <ModuleHeader>History</ModuleHeader>
+        {purchases.map(item => <Purchase purchase={item} key={item.purchase_id} />)}
       </div>
     );
   }
 }
 
+const ModuleHeader = styled.div`
+  font-family: "DIN Pro", -apple-system, system-ui, sans-serif;
+  font-weight: bold;
+  font-size: 26px;
+  line-height: 30px;
+  text-align: start;
+  letter-spacing: -0.14px;
+  border-bottom: 1px solid;
+  border-color: #f4f4f5;
+  padding-bottom: 16px;
+  
+`;
+
 export default HistoryApp;
+//  const numberOfPurchases = this.state.purchases.length;
+//  {Array(numberOfPurchases).fill(<Purchase purchase={this.state.purchases[0]}/>)}

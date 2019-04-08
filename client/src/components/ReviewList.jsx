@@ -1,4 +1,6 @@
 import React from 'react';
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import Review from './Review';
 
 class ReviewList extends React.Component {
@@ -11,16 +13,24 @@ class ReviewList extends React.Component {
 
   render() {
     return (
-      <div className="reviews-container">
-        <div className="eachReviewWrapper">
-          <Review review={this.props.stock.reviewBuy} miniheader="Buy Summary" market={this.state.market} />
-        </div>
-        <div className="eachReviewWrapper">
-          <Review review={this.props.stock.reviewSell} miniheader="Sell Summary" market={this.state.market} />
-        </div>
-      </div>
+      <AllReviews>
+        <Review oneReview={this.props.stock.reviewBuy} miniHeader="Buy Summary" market={this.state.market} />
+        <Review oneReview={this.props.stock.reviewSell} miniHeader="Sell Summary" market={this.state.market} />
+      </AllReviews>
     );
   }
 }
+
+const AllReviews = styled.div`
+  display: inline-flex:
+  flex-direction: row;
+  flex-wrap: nowrap;
+  width: 470px;
+  justify-content: space-between;
+`;
+
+ReviewList.propTypes = {
+  stock: PropTypes.object,
+};
 
 export default ReviewList;

@@ -44,11 +44,13 @@ const Circle = styled.div`
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  
 `;
 
 const TagPercent = styled.div`
   font-family: "DIN Pro", -apple-system, system-ui, sans-serif;
-  font-weight: bold;
+  font-weight: normal;
+  -webkit-text-stroke: 1px;
   font-size: 26px;
   line-height: 30px;
   text-align: center;
@@ -62,6 +64,7 @@ const FlippedTag = styled(Tag)`
   height: 16px;
   display: flex;
   align-self: center;
+  color: #21ce99;
   
   -moz-transform: scaleX(-1);
   -o-transform: scaleX(-1);
@@ -73,8 +76,10 @@ const FlippedTag = styled(Tag)`
 `;
 
 const OfNRatings = styled.div`
-  font-weight: bold;
+  font-weight: normal;
   font-size: 13px;
+  -webkit-text-stroke: 0.8px;
+  letter-spacing: 0.40px;
   display: flex;
   color: #21ce99;
 `;

@@ -22,8 +22,11 @@ class PercentProgress extends React.Component {
         </VoteFor>
         <ProgressBar voteFor={this.state.voteFor} >
           <Filler percentage={this.state.percentage} voteFor={this.state.voteFor}>
-            {this.state.percentage}
-            %
+            <Percent>
+              {this.state.percentage}
+              %
+              <PercentBG percentage={this.state.percentage} voteFor={this.state.voteFor} />
+            </Percent>
           </Filler>
         </ProgressBar>
       </AllBars>
@@ -34,12 +37,15 @@ class PercentProgress extends React.Component {
 const AllBars = styled.div`
   display: flex;
   flex-direction: row;
-  font-weight: bold;
-  align-items: center;
+  font-weight: normal;
+  -webkit-text-stroke: 1px;
+  letter-spacing: 0.5px;
+  align-items: baseline;
 `;
 
 const VoteFor = styled.div`
-  width: 30px;
+  width: 32px;
+  height: 19px;
   color: ${props => (props.voteFor === 'Buy'
     ? '#21ce99'
     : '#171718')};
@@ -52,11 +58,9 @@ const ProgressBar = styled.div`
   color: ${props => (props.voteFor === 'Buy'
     ? '#21ce99'
     : '#171718')};
-  background: ${props => (props.voteFor === 'Buy'
-    ? 'linear-gradient(90deg, rgba(33, 206, 153, 0.05), rgba(33, 206, 153, 0.15))'
-    : 'linear-gradient(90deg, rgba(23, 23, 24, 0.05), rgba(23, 23, 24, 0.15))')};
+  background: #ffffff;
   border-radius: 4px;
-  margin-bottom: 24px;
+  margin: 24px 0;
   display: flex;
 `;
 
@@ -67,9 +71,27 @@ const Filler = styled.div`
   height: 100%;
   border-radius: 4px 0 0 4px;
   transition: width .2s ease-in;
-  width: ${props => props.percentage - 2}px;
-  text-indent: ${props => props.percentage}px;
+  width: ${props => (props.percentage / 100) * 426 - 2}px;
+  text-indent: ${props => (props.percentage / 100) * 426}px;
   display: flex;
+`;
+
+const PercentBG = styled.div`
+    margin-left: 0;
+    width: ${props => ((426) - 8 - ((props.percentage / 100) * 426))}px;
+    height: 6px;
+    border-radius: 4px;
+    background: ${props => (props.voteFor === 'Buy'
+    ? 'linear-gradient(90deg, rgba(33, 206, 153, 0.01), rgba(33, 206, 153, 0.15) 15%)'
+    : 'linear-gradient(90deg, rgba(23, 23, 24, 0.01), rgba(23, 23, 24, 0.15) 15%)')};
+ 
+    display: flex;
+    align-self: center;
+`;
+
+const Percent = styled.div`
+  display: flex;
+  align-self: center;
 `;
 
 PercentProgress.propTypes = {

@@ -116,9 +116,11 @@ for (let i = 0; i < symbolsNames.length; i += 1) {
     timeinforce: 'Good for day',
     submitted: samplePurchaseDateRange,
     status: 'filled',
-    entered_quantity: sampleQuantity,
+    enteredQuantity: sampleQuantity,
     filled: faker.date.between(samplePurchaseDateRange, '2019-02-02'),
-    filled_quantity: sampleQuantity,
+    filledQuantityShares: sampleQuantity,
+    filledQuantityPrice: sampleQuantity,
+    total: faker.commerce.price(),
   }];
 
   const insertSamplePurchase = () => {

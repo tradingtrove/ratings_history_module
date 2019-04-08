@@ -24,10 +24,12 @@ class DataBarChart extends React.Component {
 }
 
 const AllBars = styled.div`
-  float: right;
-  margin: 40px;
+  font-family: "DIN Pro", -apple-system, system-ui, sans-serif;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 19px;
+  letter-spacing: 0.2px;
+  -webkit-text-stroke: 0.8px;
 `;
-//  TODO: fix placement of spotlight vs barchart
-
 
 export default DataBarChart;
