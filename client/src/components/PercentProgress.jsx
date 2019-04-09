@@ -2,37 +2,23 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-class PercentProgress extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      percentage: Math.floor(100 * this.props.votes / this.props.total),
-      voteFor: this.props.voteFor,
-      market: this.props.market,
-    };
-  }
-
-  render() {
-    return (
-      <AllBars>
-        <VoteFor voteFor={this.state.voteFor} >
-          {this.state.voteFor}
-          &nbsp;
-        </VoteFor>
-        <ProgressBar voteFor={this.state.voteFor} >
-          <Filler percentage={this.state.percentage} voteFor={this.state.voteFor}>
-            <Percent>
-              {this.state.percentage}
-              %
-              <PercentBG percentage={this.state.percentage} voteFor={this.state.voteFor} />
-            </Percent>
-          </Filler>
-        </ProgressBar>
-      </AllBars>
-    );
-  }
-}
+const PercentProgress = props => (
+  <AllBars>
+    <VoteFor voteFor={props.voteFor} >
+      {props.voteFor}
+      &nbsp;
+    </VoteFor>
+    <ProgressBar voteFor={props.voteFor} >
+      <Filler percentage={Math.floor(100 * props.votes / props.total)} voteFor={props.voteFor}>
+        <Percent>
+          {Math.floor(100 * props.votes / props.total)}
+          %
+          <PercentBG percentage={Math.floor(100 * props.votes / props.total)} voteFor={props.voteFor} />
+        </Percent>
+      </Filler>
+    </ProgressBar>
+  </AllBars>
+);
 
 const AllBars = styled.div`
   display: flex;

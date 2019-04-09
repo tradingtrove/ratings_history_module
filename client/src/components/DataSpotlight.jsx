@@ -2,41 +2,20 @@ import React from 'react';
 import styled from 'styled-components';
 import { Tag } from 'styled-icons/fa-solid/';
 
-class DataSpotlight extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      buy: this.props.stock.recBuy,
-      hold: this.props.stock.recHold,
-      sell: this.props.stock.recSell,
-    };
+const DataSpotlight = props => (
+  <Circle>
+    <TagPercent>
+      <FlippedTag />
+      &nbsp;
+      {Math.floor(100 * props.stock.recBuy / (props.stock.recBuy + props.stock.recHold + props.stock.recSell))}
+      %
+    </TagPercent>
+    <OfNRatings>
+      of {props.stock.recBuy + props.stock.recHold + props.stock.recSell} ratings
+    </OfNRatings>
+  </Circle>
+);
 
-    this.total = this.state.buy + this.state.hold + this.state.sell;
-    this.percentage = Math.floor(100 * this.state.buy / this.total);
-  }
-
-  // eslint-disable-next-line class-methods-use-this
-  imgError(image) {
-    image.onerror = '';
-    image.src = '../../dist/lib/tag.png';
-  }
-
-  render() {
-    return (
-      <Circle>
-        <TagPercent>
-          <FlippedTag />
-          &nbsp;
-          {this.percentage}
-          %
-        </TagPercent>
-        <OfNRatings>
-          of {this.total} ratings
-        </OfNRatings>
-      </Circle>
-    );
-  }
-}
 
 const Circle = styled.div`
   width: 134px;

@@ -10,6 +10,7 @@ const PORT = 3001;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use('/', express.static(path.join(__dirname, 'client/dist')));
 app.use('/stocks/:stockid', express.static(path.join(__dirname, 'client/dist')));
 
 app.get('/api/ratings', (req, res) => {
