@@ -1,7 +1,6 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
-const controller = require('./controller');
 const Stock = require('./database-mongodb/Stock.js');
 const Purchase = require('./database-mongodb/Stock2.js');
 
@@ -11,7 +10,7 @@ const PORT = 3001;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use(express.static(path.join(__dirname, 'client/dist')));
+app.use('/stocks/:stockid', express.static(path.join(__dirname, 'client/dist')));
 
 app.get('/api/ratings', (req, res) => {
   Stock.find({})
@@ -26,26 +25,30 @@ app.get('/api/ratings', (req, res) => {
 
 app.get('/api/ratings/:stockID', (req, res) => {
   Stock
-    .findOne({ symbol: req.params.stockID })
+    .find({ symbol: req.params.stockID.toUpperCase() })
     .exec((err, data) => {
       if (err) {
         console.log(`Error: ${err}`);
         res.status(500).send(err);
         throw (err);
       }
+      console.log('Ratings find');
+      console.log('/api/rating/stockid', req.params.stockID, data[0]);
       res.status(200).send(data);
     });
 });
 
 app.get('/api/history/:stockID', (req, res) => {
   Purchase
-    .findOne({ symbol: req.params.stockID })
+    .find({ symbol: req.params.stockID.toUpperCase() })
     .exec((err, data) => {
       if (err) {
         console.log(`Error: ${err}`);
         res.status(500).send(err);
         throw (err);
       }
+      console.log('no error');
+      console.log('api/history/stockID', req.params.stockID, data);
       res.status(200).send(data);
     });
 });

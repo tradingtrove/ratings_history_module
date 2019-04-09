@@ -28,8 +28,7 @@ const AllBars = styled.div`
   font-weight: normal;
   font-size: 13px;
   line-height: 19px;
-  letter-spacing: 0.2px;
-  -webkit-text-stroke: 0.8px;
+  letter-spacing: 0.0350em;
 `;
 
 export default DataBarChart;

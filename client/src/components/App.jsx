@@ -21,7 +21,7 @@ const BothModules = styled.div`
 @font-face {
   font-family: DIN Pro;
   font-weight: normal;
-  src: url("lib/DINPro\ Regular.otf") format("opentype");
+  src: url("fonts/DINProRegular.otf") format("opentype");
 }
 
 @font-face {

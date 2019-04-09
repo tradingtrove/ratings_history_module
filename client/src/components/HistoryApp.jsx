@@ -1,6 +1,7 @@
 import React from 'react';
-import Purchase from './Purchase';
+import axios from 'axios';
 import styled from 'styled-components';
+import Purchase from './Purchase';
 
 class HistoryApp extends React.Component {
   constructor() {
@@ -48,14 +49,23 @@ class HistoryApp extends React.Component {
         },
       ],
     };
+    this.getPurchaseData = this.getPurchaseData.bind(this);
   }
 
-  // updatePurchases(data) {
-  //   this.setState = ({
-  //     purchases: data,
-  //     loading: false,
-  //   });
-  // }
+  componentDidMount() {
+    this.getPurchaseData();
+  }
+
+  getPurchaseData() {
+    const stockID = window.location.pathname.split('/')[2];
+    axios.get(`/api/history/${stockID}`)
+      .then(res => res.data)
+      .then((result) => {
+        this.setState({
+          purchases: result,
+        });
+      });
+  }
 
   render() {
     const { purchases } = this.state;
@@ -70,15 +80,14 @@ class HistoryApp extends React.Component {
 
 const ModuleHeader = styled.div`
   font-family: "DIN Pro", -apple-system, system-ui, sans-serif;
-  font-weight: bold;
+  font-weight: normal;
   font-size: 26px;
   line-height: 30px;
   text-align: start;
   letter-spacing: -0.14px;
-  border-bottom: 1px solid;
-  border-color: #f4f4f5;
+  max-width: 673px;
   padding-bottom: 16px;
-  
+  border-bottom: 1px solid rgba(23,23,24,0.05);
 `;
 
 export default HistoryApp;

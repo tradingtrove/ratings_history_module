@@ -5,11 +5,14 @@ import { Tag } from 'styled-icons/fa-solid/';
 class DataSpotlight extends React.Component {
   constructor(props) {
     super(props);
-    this.buy = 3;
-    this.hold = 2;
-    this.sell = 8;
-    this.total = this.buy + this.hold + this.sell;
-    this.percentage = Math.floor(100 * this.buy / this.total);
+    this.state = {
+      buy: this.props.stock.recBuy,
+      hold: this.props.stock.recHold,
+      sell: this.props.stock.recSell,
+    };
+
+    this.total = this.state.buy + this.state.hold + this.state.sell;
+    this.percentage = Math.floor(100 * this.state.buy / this.total);
   }
 
   // eslint-disable-next-line class-methods-use-this
@@ -39,7 +42,7 @@ const Circle = styled.div`
   width: 134px;
   height: 134px;
   border-radius: 50%;
-  background-color: rgba(33, 206, 153, 0.30);
+  background-color: rgba(33, 206, 153, 0.15);
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -52,7 +55,7 @@ const TagPercent = styled.div`
   font-weight: normal;
   -webkit-text-stroke: 1px;
   font-size: 26px;
-  line-height: 30px;
+  line-height: 36px;
   text-align: center;
   letter-spacing: -0.14px;
   color: #21ce99;
@@ -79,7 +82,7 @@ const OfNRatings = styled.div`
   font-weight: normal;
   font-size: 13px;
   -webkit-text-stroke: 0.8px;
-  letter-spacing: 0.40px;
+  letter-spacing: 0.0350em;
   display: flex;
   color: #21ce99;
 `;

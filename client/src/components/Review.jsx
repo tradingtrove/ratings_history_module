@@ -1,17 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import { TriangleDown } from 'styled-icons/octicons/TriangleDown';
 
 class Review extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      body: this.props.oneReview || '',
-      miniHeader: this.props.miniHeader,
-      market: this.props.market,
       expanded: false,
     };
-    this.bodyParagraphs = this.state.body.split('\n', 3);
+    this.market = this.props.market;
+    this.miniHeader = this.props.miniHeader; 
     this.toggleReadMore = this.toggleReadMore.bind(this);
   }
 
@@ -23,35 +22,32 @@ class Review extends React.Component {
   }
 
   render() {
-
     if (this.state.expanded === true) {
       return (
         <div>
           <ReviewWrapper>
-            <ReviewBox>
+            <ReviewBox expanded={this.state.expanded}>
               <InnerContainer>
-                <h4>{this.state.miniHeader}</h4>
+                <Summary>{this.props.miniHeader}</Summary>
                 <FirstPara>
                   <p>
                     <span>&#8220;</span>
-                    {this.bodyParagraphs[0] || ''}
+                    {this.props.oneReview.split('\n', 3)[0]}
                   </p>
                 </FirstPara>
                 <RDetails>
                   <p key="reviewp1">
-                    {this.bodyParagraphs[1] || ''}
+                    {this.props.oneReview.split('\n', 3)[1]}
                   </p>
                   <p key="reviewp2">
-                    {this.bodyParagraphs[2] || ''}
+                    {this.props.oneReview.split('\n', 3)[2]}
                     <span>&#8221;</span>
                   </p>
-                  <br key="reviewBR" />
                 </RDetails>
               </InnerContainer>
             </ReviewBox>
             <InnerContainer>
               <ReadMore><a href="/" onClick={e => this.toggleReadMore(e)}>{this.state.expanded === true ? 'Read Less' : 'Read More'}</a></ReadMore>
-              <br />
               <ReviewCaption>Morningstar</ReviewCaption>
             </InnerContainer>
           </ReviewWrapper>
@@ -62,13 +58,13 @@ class Review extends React.Component {
     return (
       <div>
         <ReviewWrapper>
-          <ReviewBox>
+          <ReviewBox expanded={this.state.expanded}>
             <InnerContainer>
-              <h4>{this.state.miniHeader}</h4>
+            <Summary>{this.props.miniHeader}</Summary>
               <FirstPara>
                 <p>
                   <span>&#34;</span>
-                  {this.bodyParagraphs[0] || ''}
+                  {this.props.oneReview.split('\n', 3)[0]}
                 </p>
               </FirstPara>
               
@@ -76,7 +72,6 @@ class Review extends React.Component {
           </ReviewBox>
           <InnerContainer>
             <ReadMore><a href="/" onClick={e => this.toggleReadMore(e)}>{this.state.expanded === true ? 'Read Less' : 'Read More'}</a></ReadMore>
-            <br />
             <ReviewCaption>Morningstar</ReviewCaption>
           </InnerContainer>
         </ReviewWrapper>
@@ -85,11 +80,6 @@ class Review extends React.Component {
     );
   }
 }
-
-const RDetails = styled.div`
-  
-`;
-
 
 const InnerContainer = styled.div`
   margin-left: 4px;
@@ -101,10 +91,22 @@ const FirstPara = styled.div`
 const ReviewWrapper = styled.div`
   border-radius: 4px 4px 4px 0;
   padding: 0 24px 24px;
+  margin-top: 6px;
   width: 180px;
   background-color: rgba(23, 23, 24, 0.02);
   color: #171718;
   padding-bottom: 16px;
+`;
+
+const Summary = styled.div`
+  font-family: "DIN Pro", -apple-system, system-ui, sans-serif;
+  font-size: 13px;
+  -webkit-text-stroke-width: 0.8px;
+  margin-bottom: -6px;
+`;
+
+const RDetails = styled.div`
+  margin-bottom: -13px;
 `;
 
 const ReviewBox = styled.div`
@@ -112,22 +114,14 @@ const ReviewBox = styled.div`
   width: 180px;
   height: 110px;
   overflow: hidden;
-  padding-top: 16px;
+  padding-top: 24px;
   display: flex;
   flex-direction: column;
-  h4 {
-    text-align: left;
-    color: #171718;
-    font-family: "DIN Pro", -apple-system, system-ui, sans-serif;
-    font-weight: bold;
-    font-size: 13px;
-    line-height: 19px;
-    letter-spacing: 0.25px;
-    padding-top: 0;
-    padding-bottom: 0;
-    margin-top: 0;
-    margin-bottom: 0;
+  
+  &:first-child {
+    height: ${props => (props.expanded === false ? '80px' : 'auto')};
   }
+
   p {
     text-align: left;
     color: #171718;
@@ -137,7 +131,6 @@ const ReviewBox = styled.div`
     line-height: 19px;
     letter-spacing: 0.2px;
   }
-
 
     height: auto;
     -webkit-transition: background 1250ms, margin-bottom 1250ms, -webkit-box-shadow 1250ms;
@@ -171,6 +164,8 @@ const ReviewCaption = styled.div`
   &:hover {
     color: #cbcbcd;
   }
+  padding-top: 16px;
+  padding-bottom: 6px;
 `;
 
 const ReviewTriangle = styled(TriangleDown)`
@@ -179,5 +174,9 @@ const ReviewTriangle = styled(TriangleDown)`
   height: 48px;
   color: rgba(23, 23, 24, 0.02);
 `;
+
+Review.propTypes = {
+  oneReview: PropTypes.string,
+};
 
 export default Review;

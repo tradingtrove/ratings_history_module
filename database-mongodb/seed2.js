@@ -131,3 +131,57 @@ for (let i = 0; i < symbolsNames.length; i += 1) {
 
   insertSamplePurchase();
 }
+
+for (let i = 0; i < symbolsNames.length; i += 1) {
+  const samplePurchaseDateRange = faker.date.between('2015-03-03', '2019-02-02');
+  const sampleQuantity = faker.random.number(100);
+
+  const samplePurchase = [{
+    symbol: symbolsNames[i][0],
+    purchase_id: faker.random.number(12131, 80123),
+    name: symbolsNames[i][1],
+    timeinforce: 'Good for day',
+    submitted: samplePurchaseDateRange,
+    status: 'filled',
+    enteredQuantity: sampleQuantity,
+    filled: faker.date.between(samplePurchaseDateRange, '2019-02-02'),
+    filledQuantityShares: sampleQuantity,
+    filledQuantityPrice: sampleQuantity,
+    total: faker.commerce.price(),
+  }];
+
+  const insertSamplePurchase = () => {
+    Purchase.create(samplePurchase)
+      .then(() => db.close())
+      .catch(err => console.log(`Error saving data to database: ${err}`));
+  };
+
+  insertSamplePurchase();
+}
+
+for (let i = 0; i < symbolsNames.length; i += 1) {
+  const samplePurchaseDateRange = faker.date.between('2015-03-03', '2019-02-02');
+  const sampleQuantity = faker.random.number(100);
+
+  const samplePurchase = [{
+    symbol: symbolsNames[i][0],
+    purchase_id: faker.random.number(12131, 80123),
+    name: symbolsNames[i][1],
+    timeinforce: 'Good for day',
+    submitted: samplePurchaseDateRange,
+    status: 'filled',
+    enteredQuantity: sampleQuantity,
+    filled: faker.date.between(samplePurchaseDateRange, '2019-02-02'),
+    filledQuantityShares: sampleQuantity,
+    filledQuantityPrice: sampleQuantity,
+    total: faker.commerce.price(),
+  }];
+
+  const insertSamplePurchase = () => {
+    Purchase.create(samplePurchase)
+      .then(() => db.close())
+      .catch(err => console.log(`Error saving data to database: ${err}`));
+  };
+
+  insertSamplePurchase();
+}

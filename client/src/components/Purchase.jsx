@@ -82,7 +82,7 @@ class Purchase extends React.Component {
           </Info>
           <Info>
             <div className="key">Filled</div>
-            <div className="value">{moment(filledTime).format('MMM DD, YYYY')}</div>
+            <div className="value">{moment(filledTime).format('LLL') + ' EDT'}</div>
           </Info>
           <Info>
             <div className="key">Filled Quantity</div>
@@ -96,6 +96,7 @@ class Purchase extends React.Component {
             </div>
           </Info>
         </Details>
+        <DownloadTC>Download Trade Confirmation</DownloadTC>
       </PurchaseWrapper>
     );
   }
@@ -111,22 +112,27 @@ const Expandable = styled.div`
 const Details = styled.div`
   border-top: 1px solid;
   border-color: #f4f4f5;
-  margin: 6px 16px;
+  margin: 6px 16px 6px;
+  padding-top: 30px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   font-size: 13px;
-  padding-top: 30px;
 `;
 
 const TopInfo = styled.div`
   display: flex;
   flex-direction: column;
+  font-family: "DIN Pro", -apple-system, system-ui, sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.0350em;
   .bold {
       font-family: "DIN Pro", -apple-system, system-ui, sans-serif;
-      font-weight: bold;
+      font-weight: normal;
+      -webkit-text-stroke-width: 1px;
       font-size: 16px;
       line-height: 22px;
+      letter-spacing: 0.0350em;
     }
   .left {
     text-align: left;
@@ -137,46 +143,46 @@ const TopInfo = styled.div`
 `;
 
 const PurchaseWrapper = styled.div`
-  border-style: solid;
-  border-width: 1px;
-  border-color: #cbcbcd;
-  margin: 0 -24px;
-  
-  border-left: ${props => (props.expanded === false ? 'none' : '1px solid cbcbcd')};
-  border-right: ${props => (props.expanded === false ? 'none' : '1px solid cbcbcd')};
-  border-radius: ${props => (props.expanded === false ? 'none' : '4px')}
-  
+  padding-left: -24px;
+  margin-right: 48px;
+  border-top: 0px;
+  border-bottom: ${props => (props.expanded === false ? '1px solid rgba(23,23,24,0.00)' : '1px solid rgba(23,23,24,0.00)')};
+  border-left: ${props => (props.expanded === false ? '1px solid rgba(23,23,24,0.00)' : '1px solid rgba(23,23,24,0.00)')};
+  border-right: ${props => (props.expanded === false ? '1px solid rgba(23,23,24,0.00)' : '1px solid rgba(23,23,24,0.00)')};
+  border-radius: ${props => (props.expanded === false ? 'none' : '4px')};
+
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
+  box-shadow: ${props => (props.expanded === false ? 'none' : '0 0 4px 1px rgba(0, 0, 0, 0.01), 0 3px 24px rgba(48, 51, 51, 0.09)')};
+  margin-bottom: ${props => (props.expanded === false ? '0' : '16px')};
+  margin-top: ${props => (props.expanded === false ? '0' : '0')};
   
-  -webkit-transition: background 150ms, margin-bottom 150ms, -webkit-box-shadow 150ms;
-  transition: background 150ms, margin-bottom 150ms, -webkit-box-shadow 150ms;
-  transition: background 150ms, box-shadow 150ms, margin-bottom 150ms;
-  transition: background 150ms, box-shadow 150ms, margin-bottom 150ms, -webkit-box-shadow 150ms;
-  margin-left: 0px;
-  margin-right: 0px;
-  margin-bottom: 12px;
-
-  -webkit-transition: background 450ms, margin-bottom 450ms, -webkit-box-shadow 450ms;
-  transition: background 450ms, margin-bottom 450ms, -webkit-box-shadow 450ms;
-  transition: background 450ms, box-shadow 450ms, margin-bottom 450ms;
-  transition: background 450ms, box-shadow 450ms, margin-bottom 450ms, -webkit-box-shadow 450ms;
+  &:after {
+    content: '';
+    height: 1px;
+    width: 673px;
+    border-bottom: ${props => (props.expanded === false ? '1px solid rgba(23,23,24,0.05)' : '1px solid rgba(23,23,24,0.00)')};
+  }
 
   &:hover {
-    box-shadow
-    background: rgba(23, 23, 24, 0.15);
-    border-radius: 4px.
-    
-    -moz-box-shadow:    inset 0 0 10px rgba(23, 23, 24, 0.15);
-    -webkit-box-shadow: inset 0 0 10px rgba(23, 23, 24, 0.15);
-    box-shadow:         inset 0 0 10px rgba(23, 23, 24, 0.15);
-   
+    background: rgba(23, 23, 24, 0.02);
+    border-radius: 4px;
+    border: 1px solid rgba(23, 23, 24, 0.00);
+    border-top: 0px;
+    -webkit-transition: background 150ms, margin-bottom 150ms, -webkit-box-shadow 150ms;
+    transition: background 150ms, margin-bottom 150ms, -webkit-box-shadow 150ms;
+    transition: background 150ms, box-shadow 150ms, margin-bottom 150ms;
+    transition: background 150ms, box-shadow 150ms, margin-bottom 150ms, -webkit-box-shadow 150ms;
   }
+
+}
+
+  width: 697px;
 `;
 
 const Info = styled.div`
-  width: 218px;
+  width: 180px;
   padding: 0 8px;
   .key {
     overflow: hidden;
@@ -185,6 +191,23 @@ const Info = styled.div`
   .value {
     margin-bottom: 16px;
   }
+`;
+
+const DownloadTC = styled.div`
+  color: ${props => (props.market === 'Bear'
+    ? '#f45531'
+    : '#21ce99')};
+  &:hover {
+    color: ${props => (props.market === 'Bear'
+    ? '#ff6340'
+    : '#1ae9aa')}
+    transition-duration: 300ms;
+  }
+  padding: 8px 8px 16px;
+  cursor: pointer;
+  margin: 6px 16px;
+  font-size: 13px;
+  -webkit-text-stroke-width: 0.5px;
 `;
 
 Purchase.propTypes = {

@@ -38,13 +38,13 @@ const AllBars = styled.div`
   display: flex;
   flex-direction: row;
   font-weight: normal;
-  -webkit-text-stroke: 1px;
-  letter-spacing: 0.5px;
+  -webkit-text-stroke: 0.8px;
+  letter-spacing: 0.0350em;
   align-items: baseline;
 `;
 
 const VoteFor = styled.div`
-  width: 32px;
+  width: 36px;
   height: 19px;
   color: ${props => (props.voteFor === 'Buy'
     ? '#21ce99'
@@ -56,7 +56,7 @@ const ProgressBar = styled.div`
   width: 426px;
   height: 6px;
   color: ${props => (props.voteFor === 'Buy'
-    ? '#21ce99'
+    ? 'rgba(33, 206, 153, 0.9)'
     : '#171718')};
   background: #ffffff;
   border-radius: 4px;
@@ -70,7 +70,6 @@ const Filler = styled.div`
     : '#171718')};
   height: 100%;
   border-radius: 4px 0 0 4px;
-  transition: width .2s ease-in;
   width: ${props => (props.percentage / 100) * 426 - 2}px;
   text-indent: ${props => (props.percentage / 100) * 426}px;
   display: flex;
@@ -82,8 +81,8 @@ const PercentBG = styled.div`
     height: 6px;
     border-radius: 4px;
     background: ${props => (props.voteFor === 'Buy'
-    ? 'linear-gradient(90deg, rgba(33, 206, 153, 0.01), rgba(33, 206, 153, 0.15) 15%)'
-    : 'linear-gradient(90deg, rgba(23, 23, 24, 0.01), rgba(23, 23, 24, 0.15) 15%)')};
+    ? 'linear-gradient(90deg, rgba(33, 206, 153, 0.01), rgba(33, 206, 153, 0.15) 8%)'
+    : 'linear-gradient(90deg, rgba(23, 23, 24, 0.01), rgba(23, 23, 24, 0.15) 8%)')};
  
     display: flex;
     align-self: center;
