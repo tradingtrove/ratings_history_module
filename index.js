@@ -33,8 +33,6 @@ app.get('/api/ratings/:stockID', (req, res) => {
         res.status(500).send(err);
         throw (err);
       }
-      console.log('Ratings find');
-      console.log('/api/rating/stockid', req.params.stockID, data[0]);
       res.status(200).send(data);
     });
 });
@@ -48,8 +46,6 @@ app.get('/api/history/:stockID', (req, res) => {
         res.status(500).send(err);
         throw (err);
       }
-      console.log('no error');
-      console.log('api/history/stockID', req.params.stockID, data);
       res.status(200).send(data);
     });
 });
