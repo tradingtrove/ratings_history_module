@@ -186,7 +186,8 @@ const Info = styled.div`
   padding: 0 8px;
   .key {
     overflow: hidden;
-    font-weight: bold;
+    font-weight: normal;
+    -webkit-text-stroke-width: 0.8px;
   }
   .value {
     margin-bottom: 16px;
