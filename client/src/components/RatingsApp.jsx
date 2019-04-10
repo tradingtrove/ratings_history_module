@@ -29,13 +29,17 @@ class RatingsApp extends React.Component {
 
   getStockData() {
     const stockID = window.location.pathname.split('/')[2];
-    axios.get(`/api/ratings/${stockID}`)
-      .then(res => res.data)
-      .then((result) => {
-        this.setState({
-          stock: result[0],
-        }, () => console.log('my new state is: ', this.state));
-      });
+    if (!stockID) {
+      alert('Please enter a stock ID in the browser window location bar, in the format [host]/[path]/stocks/stockID');
+    } else {
+      axios.get(`/api/ratings/${stockID}`)
+        .then(res => res.data)
+        .then((result) => {
+          this.setState({
+            stock: result[0],
+          }, () => console.log('my new state is: ', this.state));
+        });
+    }
   }
 
   render() {

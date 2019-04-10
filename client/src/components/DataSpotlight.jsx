@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import { Tag } from 'styled-icons/fa-solid/';
 
 const DataSpotlight = props => (
@@ -16,7 +17,6 @@ const DataSpotlight = props => (
   </Circle>
 );
 
-
 const Circle = styled.div`
   width: 134px;
   height: 134px;
@@ -26,7 +26,6 @@ const Circle = styled.div`
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  
 `;
 
 const TagPercent = styled.div`
@@ -65,6 +64,10 @@ const OfNRatings = styled.div`
   display: flex;
   color: #21ce99;
 `;
+
+DataSpotlight.propTypes = {
+  stock: PropTypes.object
+};
 
 export default DataSpotlight;
 
