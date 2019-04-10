@@ -134,7 +134,7 @@ for (let i = 0; i < symbolsNames.length; i += 1) {
 
 for (let i = 0; i < symbolsNames.length; i += 1) {
   const samplePurchaseDateRange = faker.date.between('2015-03-03', '2019-02-02');
-  const sampleQuantity = faker.random.number(100);
+  const sampleQuantity = faker.random.number(100) + 1;
 
   const samplePurchase = [{
     symbol: symbolsNames[i][0],
@@ -161,7 +161,7 @@ for (let i = 0; i < symbolsNames.length; i += 1) {
 
 for (let i = 0; i < symbolsNames.length; i += 1) {
   const samplePurchaseDateRange = faker.date.between('2015-03-03', '2019-02-02');
-  const sampleQuantity = faker.random.number(100);
+  const sampleQuantity = faker.random.number(100) + 1;
 
   const samplePurchase = [{
     symbol: symbolsNames[i][0],
