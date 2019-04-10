@@ -28,8 +28,8 @@ class Purchase extends React.Component {
 
     if (this.state.expanded === false) {
       return (
-        <PurchaseWrapper expanded={this.state.expanded}>
-          <Expandable onClick={e => this.toggleReadMore(e)}>
+        <PurchaseWrapper expanded={this.state.expanded} onClick={e => this.toggleReadMore(e)}>
+          <Expandable>
             <TopInfo>
               <div className="bold left">{this.type}</div>
               {moment(submitTime).format('MMM DD')}
@@ -43,8 +43,8 @@ class Purchase extends React.Component {
       );
     }
     return (
-      <PurchaseWrapper>
-        <Expandable onClick={e => this.toggleReadMore(e)}>
+      <PurchaseWrapper expanded={this.state.expanded} onClick={e => this.toggleReadMore(e)}>
+        <Expandable>
           <TopInfo>
             <div className="bold left">{this.type}</div>
             {moment(submitTime).format('MMM DD')}
@@ -170,6 +170,7 @@ const PurchaseWrapper = styled.div`
     border-radius: 4px;
     border: 1px solid rgba(23, 23, 24, 0.00);
     border-top: 0px;
+    cursor: pointer;
     -webkit-transition: background 150ms, margin-bottom 150ms, -webkit-box-shadow 150ms;
     transition: background 150ms, margin-bottom 150ms, -webkit-box-shadow 150ms;
     transition: background 150ms, box-shadow 150ms, margin-bottom 150ms;
