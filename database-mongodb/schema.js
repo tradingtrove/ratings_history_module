@@ -1,11 +1,18 @@
 const mongoose = require('mongoose');
-const db = require('./index.js');
 
 mongoose.Promise = global.Promise;
 
+const stockSchema = new mongoose.Schema({
+  symbol: String,
+  recBuy: Number,
+  recHold: Number,
+  recSell: Number,
+  reviewBuy: String,
+  reviewSell: String,
+});
+
 const purchaseSchema = new mongoose.Schema({
   symbol: String,
-  purchase_id: Number,
   name: String,
   timeinforce: String,
   submitted: Date,
@@ -17,6 +24,11 @@ const purchaseSchema = new mongoose.Schema({
   total: Number,
 });
 
+const Stock = mongoose.model('Stocks', stockSchema);
 const Purchase = mongoose.model('Purchases', purchaseSchema);
 
-module.exports = Purchase;
+
+module.exports = {
+  Stock,
+  Purchase,
+};
