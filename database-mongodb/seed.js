@@ -1,7 +1,6 @@
 const faker = require('faker');
 const _ = require('lodash');
-const db = require('./index.js');
-const { Stock, Purchase } = require('./schema.js');
+const { Stock, Purchase, db } = require('./index.js');
 
 
 const alphabet = [
