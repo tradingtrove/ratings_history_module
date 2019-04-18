@@ -10,7 +10,6 @@ class HistoryApp extends React.Component {
       purchases: [
         {
           symbol: 'AAPL',
-          purchase_id: 752,
           name: 'Apple',
           timeinforce: 'Good for day',
           submitted: '2016-09-24T00:51:08',
@@ -23,7 +22,6 @@ class HistoryApp extends React.Component {
         },
         {
           symbol: 'AAPL',
-          purchase_id: 1976,
           name: 'Apple',
           timeinforce: 'Good for day',
           submitted: '2016-02-19T10:43:43',
@@ -36,7 +34,6 @@ class HistoryApp extends React.Component {
         },
         {
           symbol: 'AAPL',
-          purchase_id: 134,
           name: 'Apple',
           timeinforce: 'Good for day',
           submitted: '2010-05-19T10:43:43',
@@ -58,7 +55,7 @@ class HistoryApp extends React.Component {
 
   getPurchaseData() {
     const stockID = window.location.pathname.split('/')[2];
-    axios.get(`/api/history/${stockID}`)
+    axios.get(`/api/stocks/${stockID}/history`)
       .then(res => res.data)
       .then((result) => {
         this.setState({
@@ -72,7 +69,7 @@ class HistoryApp extends React.Component {
     return (
       <div>
         <ModuleHeader>History</ModuleHeader>
-        {purchases.map(item => <Purchase purchase={item} key={item.purchase_id} />)}
+        {purchases.map(item => <Purchase purchase={item} key={item._id} />)}
       </div>
     );
   }
@@ -91,5 +88,3 @@ const ModuleHeader = styled.div`
 `;
 
 export default HistoryApp;
-//  const numberOfPurchases = this.state.purchases.length;
-//  {Array(numberOfPurchases).fill(<Purchase purchase={this.state.purchases[0]}/>)}

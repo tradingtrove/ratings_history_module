@@ -32,7 +32,7 @@ class RatingsApp extends React.Component {
     if (!stockID) {
       alert('Please enter a stock ID in the browser window location bar, in the format [host]/[path]/stocks/stockID');
     } else {
-      axios.get(`/api/ratings/${stockID}`)
+      axios.get(`/api/stocks/${stockID}/ratings`)
         .then(res => res.data)
         .then((result) => {
           this.setState({
