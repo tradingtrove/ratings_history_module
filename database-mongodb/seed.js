@@ -1,6 +1,5 @@
 const faker = require('faker');
 const _ = require('lodash');
-const { Stock, Purchase, db } = require('./index');
 
 
 const alphabet = [
@@ -8,7 +7,7 @@ const alphabet = [
 ];
 const symbols = new Set();
 const generateSymbolsAndNames = (() => {
-  while (symbols.size < 1000) {
+  while (symbols.size < 1) {
     const symbolLength = _.random(1, 5);
     let currSymbol = '';
     for (let i = 0; i < symbolLength; i += 1) {
@@ -72,24 +71,8 @@ const generateStocksData = () => {
   return Array.from(allStocksData);
 };
 
-const insertPurchaseData = (() => {
-  console.time('Purchase Data: ');
-  if (Purchase.collection) {
-    db.dropCollection('purchases');
-  }
-  Purchase.create(generatePurchaseData())
-    .then(() => { console.timeEnd('Purchase Data: '); db.close(); })
-    .catch(err => console.log(`Error saving data to database: ${err}`));
-})();
 
-const insertStocksData = (() => {
-  console.time('Stock Data: ');
-  if (Stock.collection) {
-    db.dropCollection('stocks');
-  }
-  Stock.create(generateStocksData())
-    .then(() => { console.timeEnd('Stock Data: '); db.close(); })
-    .catch(err => console.log(`Error saving data to database: ${err}`));
-})();
-
-// console.log(symbols);
+module.exports = {
+  generatePurchaseData,
+  generateStocksData,
+};
