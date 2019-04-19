@@ -70,11 +70,3 @@ DataSpotlight.propTypes = {
 };
 
 export default DataSpotlight;
-
-
-{/* 
-  import tagSVG from '../../dist/lib/tag.svg';
-  <img src={tagSVG} alt="price tag" width="14px" height="14px" onError={this.imgError(this)} />
-{this.percentage}
-% 
-*/}

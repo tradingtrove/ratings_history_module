@@ -1,8 +1,7 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
-const Stock = require('./database-mongodb/Stock.js');
-const Purchase = require('./database-mongodb/Stock2.js');
+const { Stock, Purchase } = require('../database-mongodb/index');
 
 const app = express();
 const PORT = 3001;
@@ -11,20 +10,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/', express.static(path.join(__dirname, 'client/dist')));
-app.use('/stocks/:stockid', express.static(path.join(__dirname, 'client/dist')));
+app.use('/stocks/:stockID', express.static(path.join(__dirname, 'client/dist')));
 
-app.get('/api/ratings', (req, res) => {
-  Stock.find({})
-    .exec((err, stockRatings) => { 
-      if (err) {
-        res.status(500).send('could not find any expert ratings of stocks');
-        throw (err);
-      }
-      res.status(200).send(stockRatings);
-    });
-});
-
-app.get('/api/ratings/:stockID', (req, res) => {
+app.get('/api/stocks/:stockID/ratings', (req, res) => {
   Stock
     .find({ symbol: req.params.stockID.toUpperCase() })
     .exec((err, data) => {
@@ -37,7 +25,7 @@ app.get('/api/ratings/:stockID', (req, res) => {
     });
 });
 
-app.get('/api/history/:stockID', (req, res) => {
+app.get('/api/stocks/:stockID/history', (req, res) => {
   Purchase
     .find({ symbol: req.params.stockID.toUpperCase() })
     .exec((err, data) => {

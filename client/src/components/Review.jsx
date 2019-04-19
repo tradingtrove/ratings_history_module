@@ -32,15 +32,15 @@ class Review extends React.Component {
                 <FirstPara>
                   <p>
                     <span>&#8220;</span>
-                    {this.props.oneReview.split('\n', 3)[0]}
+                    {this.props.oneReview}
                   </p>
                 </FirstPara>
                 <RDetails>
                   <p key="reviewp1">
-                    {this.props.oneReview.split('\n', 3)[1]}
+                    {this.props.oneReview}
                   </p>
                   <p key="reviewp2">
-                    {this.props.oneReview.split('\n', 3)[2]}
+                    {this.props.oneReview}
                     <span>&#8221;</span>
                   </p>
                 </RDetails>
@@ -64,7 +64,7 @@ class Review extends React.Component {
               <FirstPara>
                 <p>
                   <span>&#34;</span>
-                  {this.props.oneReview.split('\n', 3)[0]}
+                  {this.props.oneReview}
                 </p>
               </FirstPara>
               

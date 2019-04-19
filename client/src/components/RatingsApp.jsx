@@ -9,17 +9,8 @@ class RatingsApp extends React.Component {
   constructor() {
     super();
     this.state = {
-      stock: {
-        symbol: 'DUMMY',
-        recBuy: 11,
-        recHold: 8,
-        recSell: 20,
-        reviewBuy: 'Dummy Data Taiwan Semiconductor Manufacturing Company Limited local Ergonomic. \n The impactful transform architectures encompassing. \n Overall, granular scale convergence Taiwan Semiconductor Manufacturing Company Limited optimizing',
-        reviewSell: 'Dummy Data B2C target e-tailers local Taiwan Semiconductor Manufacturing Company Limited Ergonomic. \n For B2C implement applications encompassing. \n Hence, B2C target e-tailers Taiwan Semiconductor Manufacturing Company Limited optimizing',
-      },
-      market: 'Bull',
+      stock: {},
     };
-    this.market = this.state.pricedifferenceFromStartToToday === 'Negative' ? 'Bear' : 'Bull';
     this.getStockData = this.getStockData.bind(this);
   }
 
@@ -32,7 +23,7 @@ class RatingsApp extends React.Component {
     if (!stockID) {
       alert('Please enter a stock ID in the browser window location bar, in the format [host]/[path]/stocks/stockID');
     } else {
-      axios.get(`/api/ratings/${stockID}`)
+      axios.get(`/api/stocks/${stockID}/ratings`)
         .then(res => res.data)
         .then((result) => {
           this.setState({
