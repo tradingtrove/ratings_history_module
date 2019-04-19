@@ -10,11 +10,11 @@
     "test:coverage": "jest --collectCoverage --colors",
     "build:watch": "webpack --watch -d",
     "seed": "node database-mongodb/seed.js",
-    "start": "nodemon index.js"
+    "start": "nodemon server/index.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/FiveFinance/ratings_history_module.git"
+    "url": "git+https://github.com/tradingtrove/ratings_history_module.git"
   },
   "babel": {
     "presets": [
@@ -26,9 +26,9 @@
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/FiveFinance/ratings_history_module/issues"
+    "url": "https://github.com/tradingtrove/ratings_history_module/issues"
   },
-  "homepage": "https://github.com/FiveFinance/ratings_history_module#readme",
+  "homepage": "https://github.com/tradingtrove/ratings_history_module#readme",
   "devDependencies": {
     "@babel/core": "^7.4.0",
     "@babel/preset-env": "^7.4.2",

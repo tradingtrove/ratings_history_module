@@ -13,6 +13,7 @@ class HistoryApp extends React.Component {
   }
 
   componentDidMount() {
+    console.log('what');
     this.getPurchaseData();
   }
 
@@ -32,7 +33,7 @@ class HistoryApp extends React.Component {
     return (
       <div>
         <ModuleHeader>History</ModuleHeader>
-        {purchases.map(item => <Purchase purchase={item} key={item._id} />)}
+        {purchases.map(item => <Purchase purchase={item} key={item.id} />)}
       </div>
     );
   }

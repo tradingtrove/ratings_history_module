@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
-const { Stock, Purchase } = require('./database-mongodb/index.js');
+const { Stock, Purchase } = require('../database-mongodb/index');
 
 const app = express();
 const PORT = 3001;
@@ -10,7 +10,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/', express.static(path.join(__dirname, 'client/dist')));
-app.use('/stocks/:stockid', express.static(path.join(__dirname, 'client/dist')));
+app.use('/stocks/:stockID', express.static(path.join(__dirname, 'client/dist')));
 
 app.get('/api/stocks/:stockID/ratings', (req, res) => {
   Stock
@@ -26,7 +26,6 @@ app.get('/api/stocks/:stockID/ratings', (req, res) => {
 });
 
 app.get('/api/stocks/:stockID/history', (req, res) => {
-  console.log('His req');
   Purchase
     .find({ symbol: req.params.stockID.toUpperCase() })
     .exec((err, data) => {

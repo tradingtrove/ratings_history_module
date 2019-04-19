@@ -8,7 +8,7 @@ const alphabet = [
 ];
 const symbols = new Set();
 const generateSymbolsAndNames = (() => {
-  while (symbols.size < 10) {
+  while (symbols.size < 1000) {
     const symbolLength = _.random(1, 5);
     let currSymbol = '';
     for (let i = 0; i < symbolLength; i += 1) {
@@ -38,7 +38,6 @@ const generatePurchaseData = () => {
         const onePurchaseData = {
           symbol,
           name: companyName,
-          id: { type: Number, unique: true },
           timeinforce: timeInForceOptions[_.random(0, 3)],
           submitted: purchaseDateRange,
           status: 'Filled',
@@ -93,4 +92,4 @@ const insertStocksData = (() => {
     .catch(err => console.log(`Error saving data to database: ${err}`));
 })();
 
-console.log(symbols);
+// console.log(symbols);

@@ -1,4 +1,4 @@
-const { Stock, Purchase } = require('./database-mongodb/index.js');
+const { Stock, Purchase } = require('../database-mongodb/index');
 
 
 module.exports.requestStock = stockID => Stock.findOne({ symbol: stockID });
