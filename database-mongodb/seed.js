@@ -7,7 +7,7 @@ const alphabet = [
 ];
 const symbols = new Set();
 const generateSymbolsAndNames = (() => {
-  while (symbols.size < 1) {
+  while (symbols.size < 10000000) {
     const symbolLength = _.random(1, 5);
     let currSymbol = '';
     for (let i = 0; i < symbolLength; i += 1) {
@@ -19,7 +19,7 @@ const generateSymbolsAndNames = (() => {
   }
 })();
 
-const generatePurchaseData = () => {
+const generatePurchaseData = (callback) => {
   const allPurchaseData = new Set();
   const fillsPurchaseDataProperties = (() => {
     symbols.forEach((symbol) => {
