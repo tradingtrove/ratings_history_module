@@ -1,0 +1,2 @@
+COPY sdcproject.stocks FROM '/Users/aku2nnya/Desktop/Coding/GitHub/ratings_history_module/csv/csvStocksData.csv' WITH HEADER = TRUE AND DELIMITER = '|';
+COPY sdcproject.purchase FROM '/Users/aku2nnya/Desktop/Coding/GitHub/ratings_history_module/csv/csvPurchaseData.csv' WITH HEADER = TRUE AND DELIMITER = '|';
