@@ -8,14 +8,16 @@
     "test": "jest --colors --detectOpenHandles",
     "test:watch": "jest --watch",
     "test:coverage": "jest --collectCoverage --colors",
-    "react-dev": "webpack --watch -d",
-    "db:setup": "node database-mongodb/seed.js",
-    "db:setup2": "node database-mongodb/seed2.js",
-    "start": "nodemon index.js"
+    "build": "webpack -d",
+    "build:watch": "webpack --watch -d",
+    "seed:csv": "node csv/writeReadCsv.js",
+    "create:db": "node database-cassandra/index.js",
+    "seed:db": "cqlsh -f database-cassandra/seed.cql -k sdcproject",
+    "start": "nodemon server-cassandra/index.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/FiveFinance/ratings_history_module.git"
+    "url": "git+https://github.com/tradingtrove/ratings_history_module.git"
   },
   "babel": {
     "presets": [
@@ -27,9 +29,9 @@
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/FiveFinance/ratings_history_module/issues"
+    "url": "https://github.com/tradingtrove/ratings_history_module/issues"
   },
-  "homepage": "https://github.com/FiveFinance/ratings_history_module#readme",
+  "homepage": "https://github.com/tradingtrove/ratings_history_module#readme",
   "devDependencies": {
     "@babel/core": "^7.4.0",
     "@babel/preset-env": "^7.4.2",
@@ -58,6 +60,7 @@
     "@babel/polyfill": "^7.4.0",
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
+    "cassandra-driver": "^4.0.0",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.11.2",
     "eslint-config-airbnb": "^17.1.0",

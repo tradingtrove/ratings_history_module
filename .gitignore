@@ -7,3 +7,9 @@ logs
 npm-debug.log*
 .DS_Store
 package-lock.json
+
+# Bundle
+bundle.js
+
+# CSV
+*.csv
