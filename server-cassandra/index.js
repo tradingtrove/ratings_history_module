@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
-const { Stock, Purchase } = require('../database-cassandra/index');
+const client = require('../database-cassandra/index');
 
 const app = express();
 const PORT = 3001;
@@ -13,28 +13,24 @@ app.use('/', express.static(path.join(__dirname, 'client/dist')));
 app.use('/stocks/:stockID', express.static(path.join(__dirname, 'client/dist')));
 
 app.get('/api/stocks/:stockID/ratings', (req, res) => {
-  Stock
-    .find({ symbol: req.params.stockID.toUpperCase() })
-    .exec((err, data) => {
-      if (err) {
-        console.log(`Error: ${err}`);
-        res.status(500).send(err);
-        throw (err);
-      }
-      res.status(200).send(data);
+  const searchSymbolRatings = `SELECT * FROM stocks WHERE symbol='${req.params.stockID.toUpperCase()};`;
+  client.execute(res.status(200).send(client.execute(searchSymbolRatings)))
+    // .then(() => res.status(200).send(client.execute(searchSymbolRatings)))
+    .then(() => console.log('Found Stocks data'))
+    .catch((err) => {
+      console.log(`ERROR getting Stock Ratings: ${err}`);
+      res.status(500).send(err);
     });
 });
 
 app.get('/api/stocks/:stockID/history', (req, res) => {
-  Purchase
-    .find({ symbol: req.params.stockID.toUpperCase() })
-    .exec((err, data) => {
-      if (err) {
-        console.log(`Error: ${err}`);
-        res.status(500).send(err);
-        throw (err);
-      }
-      res.status(200).send(data);
+  const searchPurchaseHistory = `SELECT * FROM purchase WHERE symbol='${req.params.stockID.toUpperCase()};`;
+  client.execute(res.status(200).send(client.execute(searchPurchaseHistory)))
+    // .then(() => res.status(200).send(client.execute(searchPurchaseHistory)))
+    .then(() => console.log('Found Purchase history'))
+    .catch((err) => {
+      console.log(`ERROR getting Stock Ratings: ${err}`);
+      res.status(500).send(err);
     });
 });
 

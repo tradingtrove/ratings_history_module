@@ -36,6 +36,7 @@ const createPurchaseTable = `CREATE TABLE purchase (
 );`;
 
 client.connect()
+  .then(() => console.log('Now connected to Cassandra database...'))
   .then(() => client.execute(createKeyspace))
   .then(() => console.log('Created keyspace'))
   .then(() => client.execute('USE sdcproject;'))
@@ -51,3 +52,6 @@ client.connect()
   .catch(err => console.log('ERROR creating Purchase table: ', err))
   .then(() => client.shutdown())
   .then(() => console.log('Database closed...'));
+
+
+module.exports = { client };

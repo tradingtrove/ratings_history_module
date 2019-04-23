@@ -13,7 +13,7 @@
     "seed:csv": "node csv/writeReadCsv.js",
     "create:db": "node database-cassandra/index.js",
     "seed:db": "cqlsh -f database-cassandra/seed.cql -k sdcproject",
-    "start": "nodemon server/index.js"
+    "start": "nodemon server-cassandra/index.js"
   },
   "repository": {
     "type": "git",
