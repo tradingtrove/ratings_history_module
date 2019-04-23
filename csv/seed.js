@@ -2,44 +2,42 @@ const faker = require('faker');
 const _ = require('lodash');
 
 
-const generatePurchaseData = (symbol, name, id1, id2) => {
+const generatePurchaseData = (symbol, name) => {
   let onePurchaseData = {};
   const purchaseDateRange = faker.date.between('2016-01-01', '2019-04-17');
   const purchaseDateRangeFormatted = purchaseDateRange.toLocaleDateString();
-  const filledQuantity = faker.random.number(100);
-  const filledPrice = faker.random.number(50);
+  const filledQuantity = _.random(1, 100);
+  const filledPrice = _.random(1, 50);
   const totalPrice = filledQuantity * filledPrice;
   const timeInForceOptions = [
     'Day-only', 'Good-until-cancelled', 'Immediate-or-cancel',
   ];
 
   const purchaseData = {
-    id: `${id1 + 1}-${id2 + 1}`,
-    enteredquantity: filledQuantity,
+    symbol,
+    name,
     filled: (faker.date.between(purchaseDateRange, '2019-04-17')).toLocaleDateString(),
+    submitted: purchaseDateRangeFormatted,
+    total: totalPrice,
+    enteredquantity: filledQuantity,
     filledquantityprice: filledPrice,
     filledquantityshares: filledQuantity,
-    name,
     status: 'Filled',
-    submitted: purchaseDateRangeFormatted,
-    symbol,
     timeinforce: timeInForceOptions[_.random(0, 2)],
-    total: totalPrice,
   };
   onePurchaseData = purchaseData;
   return onePurchaseData;
 };
 
-const generateStocksData = (symbol, id) => {
+const generateStocksData = (symbol) => {
   let oneStockData = {};
   const stockData = {
-    id: id + 1,
+    symbol,
     recbuy: faker.random.number(20),
     rechold: faker.random.number(20),
     recsell: faker.random.number(20),
     reviewbuy: faker.lorem.paragraph(),
     reviewsell: faker.lorem.paragraph(),
-    symbol,
   };
   oneStockData = stockData;
   return oneStockData;

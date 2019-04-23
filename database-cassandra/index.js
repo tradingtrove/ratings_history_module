@@ -12,28 +12,27 @@ const createKeyspace = `CREATE KEYSPACE IF NOT EXISTS sdcproject
 
 const dropStocksTable = 'DROP TABLE IF EXISTS sdcproject.stocks;';
 const createStocksTable = `CREATE TABLE stocks (
-  id int PRIMARY KEY,
+  symbol text PRIMARY KEY,
   recbuy int,
   rechold int,
   recsell int,
   reviewbuy text,
   reviewsell text,
-  symbol text,
 );`;
 
 const dropPurchaseTable = 'DROP TABLE IF EXISTS sdcproject.purchase;';
 const createPurchaseTable = `CREATE TABLE purchase (
-  id text PRIMARY KEY,
-  enteredquantity int,
+  symbol text,
+  name text,
   filled date,
+  submitted date,
+  total int,
+  enteredquantity int,
   filledquantityprice int,
   filledquantityshares int,
-  name text,
   status text,
-  submitted date,
-  symbol text,
   timeinforce text,
-  total int,
+  PRIMARY KEY (symbol, name, filled, submitted, total)
 );`;
 
 client.connect()
