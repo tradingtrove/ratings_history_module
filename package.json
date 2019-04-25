@@ -11,7 +11,8 @@
     "build": "webpack -d",
     "build:watch": "webpack --watch -d",
     "seed:csv": "node csv/writeReadCsv.js",
-    "create:db": "node database-postgres/index.js",
+    "create:cassandra": "node database-cassandra/index.js",
+    "create:postgres": "node database-postgres/index.js",
     "seed:cassandra": "cqlsh -f database-cassandra/seed.cql -k sdcproject",
     "seed:postgres": "psql -f database-postgres/seed.sql -d sdcproject",
     "start": "nodemon server-postgres/index.js"

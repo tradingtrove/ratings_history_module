@@ -9,20 +9,22 @@ const writeStocksData = fs.createWriteStream('./csv/csvStocksData.csv');
 
 const purchaseHeader = [
   'symbol',
-  'name',
   'filled',
-  'submitted',
-  'total',
+  'id',
   'enteredquantity',
   'filledquantityprice',
   'filledquantityshares',
+  'name',
   'status',
+  'submitted',
   'timeinforce',
+  'total',
 ];
 writePurchaseData.write(`${purchaseHeader.join('|')}\n`);
 
 const stocksHeader = [
   'symbol',
+  'id',
   'recbuy',
   'rechold',
   'recsell',
@@ -64,7 +66,7 @@ const writeTenMillionPurchaseData = (writer, encoding, tenMillion) => {
       names.push(faker.company.companyName());
       const purchasedTimes = _.random(1, 5);
       for (let j = 0; j < purchasedTimes; j += 1) {
-        const purchaseData = generatePurchaseData(symbols[i], names[i]);
+        const purchaseData = generatePurchaseData(symbols[i], names[i], i, j);
         const data = `${purchaseHeader.map(key => purchaseData[key]).join('|')}\n`;
         if (i === tenMillion) {
           writer.write(data, encoding);
@@ -87,7 +89,7 @@ const writeTenMillionStocksData = (writer, encoding, tenMillion) => {
   const write = () => {
     let ok = true;
     do {
-      const stocksData = generateStocksData(symbols[i]);
+      const stocksData = generateStocksData(symbols[i], i);
       const data = `${stocksHeader.map(key => stocksData[key]).join('|')}\n`;
       if (i === tenMillion) {
         writer.write(data, encoding);

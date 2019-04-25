@@ -2,7 +2,7 @@ const faker = require('faker');
 const _ = require('lodash');
 
 
-const generatePurchaseData = (symbol, name) => {
+const generatePurchaseData = (symbol, name, id1, id2) => {
   let onePurchaseData = {};
   const purchaseDateRange = faker.date.between('2016-01-01', '2019-04-17');
   const purchaseDateRangeFormatted = purchaseDateRange.toLocaleDateString();
@@ -15,24 +15,26 @@ const generatePurchaseData = (symbol, name) => {
 
   const purchaseData = {
     symbol,
-    name,
     filled: (faker.date.between(purchaseDateRange, '2019-04-17')).toLocaleDateString(),
-    submitted: purchaseDateRangeFormatted,
-    total: totalPrice,
+    id: `${id1 + 1}-${id2 + 1}`,
     enteredquantity: filledQuantity,
     filledquantityprice: filledPrice,
     filledquantityshares: filledQuantity,
+    name,
     status: 'Filled',
+    submitted: purchaseDateRangeFormatted,
     timeinforce: timeInForceOptions[_.random(0, 2)],
+    total: totalPrice,
   };
   onePurchaseData = purchaseData;
   return onePurchaseData;
 };
 
-const generateStocksData = (symbol) => {
+const generateStocksData = (symbol, id) => {
   let oneStockData = {};
   const stockData = {
     symbol,
+    id: id + 1,
     recbuy: faker.random.number(20),
     rechold: faker.random.number(20),
     recsell: faker.random.number(20),
