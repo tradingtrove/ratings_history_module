@@ -12,28 +12,31 @@ const createKeyspace = `CREATE KEYSPACE IF NOT EXISTS sdcproject
 
 const dropStocksTable = 'DROP TABLE IF EXISTS sdcproject.stocks;';
 const createStocksTable = `CREATE TABLE stocks (
-  symbol text PRIMARY KEY,
+  symbol text,
+  id int,
   recbuy int,
   rechold int,
   recsell int,
   reviewbuy text,
   reviewsell text,
+  PRIMARY KEY (symbol)
 );`;
 
 const dropPurchaseTable = 'DROP TABLE IF EXISTS sdcproject.purchase;';
 const createPurchaseTable = `CREATE TABLE purchase (
   symbol text,
-  name text,
   filled date,
-  submitted date,
-  total int,
+  id text,
   enteredquantity int,
   filledquantityprice int,
   filledquantityshares int,
+  name text,
   status text,
+  submitted date,
   timeinforce text,
-  PRIMARY KEY (symbol, name, filled, submitted, total)
-);`;
+  total int,
+  PRIMARY KEY (symbol, filled, id)
+) WITH CLUSTERING ORDER BY (filled DESC);`;
 
 client.connect()
   .then(() => console.log('Now connected to Cassandra database...'))

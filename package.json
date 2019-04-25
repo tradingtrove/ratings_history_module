@@ -11,9 +11,11 @@
     "build": "webpack -d",
     "build:watch": "webpack --watch -d",
     "seed:csv": "node csv/writeReadCsv.js",
-    "create:db": "node database-cassandra/index.js",
-    "seed:db": "cqlsh -f database-cassandra/seed.cql -k sdcproject",
-    "start": "nodemon server-cassandra/index.js"
+    "create:cassandra": "node database-cassandra/index.js",
+    "create:postgres": "node database-postgres/index.js",
+    "seed:cassandra": "cqlsh -f database-cassandra/seed.cql -k sdcproject",
+    "seed:postgres": "psql -f database-postgres/seed.sql -d sdcproject",
+    "start": "nodemon server-postgres/index.js"
   },
   "repository": {
     "type": "git",
@@ -73,6 +75,7 @@
     "mongodb": "^3.2.2",
     "mongoose": "^5.4.20",
     "mysql": "^2.16.0",
+    "pg": "^7.10.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
