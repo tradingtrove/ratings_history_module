@@ -5,8 +5,8 @@ import Review from './Review';
 
 const ReviewList = props => (
   <AllReviews>
-    <Review oneReview={props.stock.reviewBuy} miniHeader="Buy Summary" market={props.market} />
-    <Review oneReview={props.stock.reviewSell} miniHeader="Sell Summary" market={props.market} />
+    <Review oneReview={props.stock.reviewbuy} miniHeader="Buy Summary" market={props.market} />
+    <Review oneReview={props.stock.reviewsell} miniHeader="Sell Summary" market={props.market} />
   </AllReviews>
 );
 

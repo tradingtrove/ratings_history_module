@@ -17,9 +17,9 @@ const generatePurchaseData = (symbol, name, id1, id2) => {
     symbol,
     filled: (faker.date.between(purchaseDateRange, '2019-04-17')).toLocaleDateString(),
     id: `${id1 + 1}-${id2 + 1}`,
-    enteredquantity: filledQuantity,
-    filledquantityprice: filledPrice,
-    filledquantityshares: filledQuantity,
+    enteredQuantity: filledQuantity,
+    filledQuantityPrice: filledPrice,
+    filledQuantityShares: filledQuantity,
     name,
     status: 'Filled',
     submitted: purchaseDateRangeFormatted,
@@ -35,11 +35,11 @@ const generateStocksData = (symbol, id) => {
   const stockData = {
     symbol,
     id: id + 1,
-    recbuy: faker.random.number(20),
-    rechold: faker.random.number(20),
-    recsell: faker.random.number(20),
-    reviewbuy: faker.lorem.paragraph(),
-    reviewsell: faker.lorem.paragraph(),
+    recBuy: faker.random.number(20),
+    recHold: faker.random.number(20),
+    recSell: faker.random.number(20),
+    reviewBuy: faker.lorem.paragraph(),
+    reviewSell: faker.lorem.paragraph(),
   };
   oneStockData = stockData;
   return oneStockData;

@@ -11,9 +11,9 @@ const purchaseHeader = [
   'symbol',
   'filled',
   'id',
-  'enteredquantity',
-  'filledquantityprice',
-  'filledquantityshares',
+  'enteredQuantity',
+  'filledQuantityPrice',
+  'filledQuantityShares',
   'name',
   'status',
   'submitted',
@@ -25,11 +25,11 @@ writePurchaseData.write(`${purchaseHeader.join('|')}\n`);
 const stocksHeader = [
   'symbol',
   'id',
-  'recbuy',
-  'rechold',
-  'recsell',
-  'reviewbuy',
-  'reviewsell',
+  'recBuy',
+  'recHold',
+  'recSell',
+  'reviewBuy',
+  'reviewSell',
 ];
 writeStocksData.write(`${stocksHeader.join('|')}\n`);
 

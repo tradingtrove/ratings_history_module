@@ -13,7 +13,6 @@ class HistoryApp extends React.Component {
   }
 
   componentDidMount() {
-    console.log('what');
     this.getPurchaseData();
   }
 
