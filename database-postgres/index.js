@@ -16,11 +16,11 @@ const dropStocksTable = 'DROP TABLE IF EXISTS stocks CASCADE;';
 const createStocksTable = `CREATE TABLE stocks (
   symbol text,
   id int,
-  recbuy int,
-  rechold int,
-  recsell int,
-  reviewbuy text,
-  reviewsell text,
+  recBuy int,
+  recHold int,
+  recSell int,
+  reviewBuy text,
+  reviewSell text,
   PRIMARY KEY (symbol)
 );`;
 
@@ -29,9 +29,9 @@ const createPurchaseTable = `CREATE TABLE purchase (
   symbol text,
   filled date,
   id text,
-  enteredquantity int,
-  filledquantityprice int,
-  filledquantityshares int,
+  enteredQuantity int,
+  filledQuantityPrice int,
+  filledQuantityShares int,
   name text,
   status text,
   submitted date,
