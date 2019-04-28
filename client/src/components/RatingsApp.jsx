@@ -28,7 +28,7 @@ class RatingsApp extends React.Component {
         .then((result) => {
           this.setState({
             stock: result[0],
-          }, () => console.log('my new state is: ', this.state));
+          });
         });
     }
   }

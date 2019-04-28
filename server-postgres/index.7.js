@@ -17,7 +17,7 @@ const pool = new Pool({
 const client = redis.createClient();
 
 const app = express();
-const PORT = 3001;
+const PORT = 3008;
 
 app.use(compression());
 
@@ -112,13 +112,6 @@ app.post('/api/stocks/test/history', (req, res) => {
 
 const server = app.listen(PORT, () => {
   console.log(`server running at: http://localhost:${PORT}`);
-});
-client.on('connect', (err) => {
-  if (err) {
-    throw err;
-  } else {
-    console.log('Connected to Redis');
-  }
 });
 
 module.exports = { server, app };
