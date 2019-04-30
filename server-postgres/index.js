@@ -74,7 +74,7 @@ const getPurchaseQuery = req => pool.query(`SELECT * FROM purchase WHERE symbol=
 // });
 
 app.get('/api/stocks/:stockID/history', (req, res) => {
-  client.get(req.params.stockID, (err, ratings) => {
+  client.get(`${req.params.stockID}_purchase`, (err, ratings) => {
     if (err) {
       throw err;
     }
@@ -84,7 +84,7 @@ app.get('/api/stocks/:stockID/history', (req, res) => {
       getPurchaseQuery(req)
         .then((results) => {
           res.status(200).json(results.rows);
-          client.set(req.params.stockID, JSON.stringify(results.rows));
+          client.set(`${req.params.stockID}_purchase`, JSON.stringify(results.rows));
         })
         // .then(() => console.log('Successfully got Stock Ratings'))
         .catch(error => res.status(400).send(error));
