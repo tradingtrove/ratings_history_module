@@ -27,6 +27,9 @@ app.use(compression());
 app.use('/', express.static(path.join(__dirname, '../client/dist')));
 app.use('/stocks/:stockID', express.static(path.join(__dirname, '../client/dist')));
 
+app.get('/loaderio-c2396facbc7b8ba163c1e2acb2fc7455', (req, res) => {
+  res.status(200).sendFile(path.join(__dirname, '../loaderio-c2396facbc7b8ba163c1e2acb2fc7455.txt'));
+});
 
 const getStocksQuery = req => pool.query(`SELECT * FROM stocks WHERE symbol='${req.params.stockID}';`);
 app.get('/api/stocks/:stockID/ratings', (req, res) => {
