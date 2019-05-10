@@ -3,16 +3,17 @@ const express = require('express');
 const compression = require('compression');
 const path = require('path');
 const { Pool } = require('pg');
-// const bodyParser = require('body-parser');
+
+const bodyParser = require('body-parser');
 // const redis = require('redis');
 
 
 const pool = new Pool({
-  user: 'power_user',
-  host: '3.215.38.175',
+  // user: 'power_user',
+  host: 'localhost',
   database: 'sdcproject',
-  password: '$poweruserpassword',
-  port: 5432,
+  // password: '$poweruserpassword',
+  // port: 5432,
 });
 // const client = redis.createClient();
 
@@ -21,7 +22,7 @@ const PORT = 3001;
 
 app.use(compression());
 
-// app.use(bodyParser.json());
+app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/', express.static(path.join(__dirname, '../client/dist')));
@@ -42,6 +43,107 @@ app.get('/api/stocks/:stockID/history', (req, res) => {
     // .then(() => console.log('Successfully got Purchase History'))
     .catch(err => res.status(400).send(err));
 });
+
+
+// POST method for testing purpose only
+const postStocksQuery = (req) => {
+  const data = req.body[0];
+  const {
+    symbol, id, recbuy, rechold, recsell, reviewbuy, reviewsell,
+  } = data;
+  return pool.query(`INSERT INTO stocks VALUES ('${symbol}', ${id}, ${recbuy}, ${rechold}, ${recsell}, '${reviewbuy}', '${reviewsell}');`);
+};
+app.post('/api/stocks/:stockID/ratings', (req, res) => {
+  postStocksQuery(req)
+    .then(results => res.status(201).send(results))
+    // .then(() => console.log('Successfully posted Stock Ratings'))
+    .catch(err => res.status(500).send(err));
+});
+
+// Sample:
+// [{"symbol":"TEST","id":0,"recbuy":12,"rechold":15,"recsell":18,"reviewbuy":"test reviewbuy","reviewsell":"test reviewsell"}]
+
+// POST method for testing purpose only
+const postPurchaseQuery = (req) => {
+  const data = req.body[0];
+  const {
+    symbol, filled, id, enteredquantity, filledquantityprice, filledquantityshares,
+    name, status, submitted, timeinforce, total,
+  } = data;
+  return pool.query(`INSERT INTO purchase VALUES ('${symbol}', '${filled}', '${id}', ${enteredquantity}, ${filledquantityprice}, ${filledquantityshares}, '${name}', '${status}', '${submitted}', '${timeinforce}', ${total});`);
+};
+app.post('/api/stocks/:stockID/history', (req, res) => {
+  postPurchaseQuery(req)
+    .then(results => res.status(201).send(results))
+    // .then(() => console.log('Successfully posted Stock Ratings'))
+    .catch(err => res.status(500).send(err));
+});
+
+// Sample:
+// [{"symbol":"TEST","filled":"2017-03-30T07:00:00.000Z","id":"0","enteredquantity":3,"filledquantityprice":43,"filledquantityshares":3,"name":"Test Inc.","status":"Filled","submitted":"2016-11-11T08:00:00.000Z","timeinforce":"Good-until-cancelled","total":129}]
+
+
+// PUT method for testing purpose only
+const updateStocksQuery = (req) => {
+  const data = req.body[0];
+  const {
+    symbol, id, recbuy, rechold, recsell, reviewbuy, reviewsell,
+  } = data;
+  return pool.query(`UPDATE stocks SET symbol='${symbol}', recbuy='${recbuy}', rechold='${rechold}',
+  recsell='${recsell}', reviewbuy='${reviewbuy}', reviewsell='${reviewsell}' WHERE id='${id}';`);
+};
+app.put('/api/stocks/:stockID/ratings', (req, res) => {
+  updateStocksQuery(req)
+    .then(results => res.status(201).send(results))
+    // .then(() => console.log('Successfully posted Stock Ratings'))
+    .catch(err => res.status(500).send(err));
+});
+
+// PUT method for testing purpose only
+const updatePurchaseQuery = (req) => {
+  const data = req.body[0];
+  const {
+    symbol, filled, id, enteredquantity, filledquantityprice, filledquantityshares,
+    name, status, submitted, timeinforce, total,
+  } = data;
+  return pool.query(`UPDATE purchase SET symbol='${symbol}', filled='${filled}', enteredquantity='${enteredquantity}',
+  filledquantityprice='${filledquantityprice}', filledquantityshares='${filledquantityshares}', name='${name}',
+  status='${status}', submitted='${submitted}', timeinforce='${timeinforce}', total='${total}', WHERE id='${id}';`);
+};
+app.put('/api/stocks/:stockID/history', (req, res) => {
+  updatePurchaseQuery(req)
+    .then(results => res.status(201).send(results))
+    // .then(() => console.log('Successfully posted Stock Ratings'))
+    .catch(err => res.status(500).send(err));
+});
+
+
+// DELETE method for testing purpose only
+const deleteStocksQuery = (req) => {
+  const data = req.body[0];
+  const { id } = data;
+  return pool.query(`DELETE FROM stocks WHERE id='${id}';`);
+};
+app.delete('/api/stocks/:stockID/ratings', (req, res) => {
+  deleteStocksQuery(req)
+    .then(results => res.status(201).send(results))
+    // .then(() => console.log('Successfully posted Stock Ratings'))
+    .catch(err => res.status(500).send(err));
+});
+
+// DELETE method for testing purpose only
+const deletePurchaseQuery = (req) => {
+  const data = req.body[0];
+  const { id } = data;
+  return pool.query(`DELETE purchase WHERE id='${id}';`);
+};
+app.delete('/api/stocks/:stockID/history', (req, res) => {
+  deletePurchaseQuery(req)
+    .then(results => res.status(201).send(results))
+    // .then(() => console.log('Successfully posted Stock Ratings'))
+    .catch(err => res.status(500).send(err));
+});
+
 
 const server = app.listen(PORT, () => {
   console.log(`server running at PORT: ${PORT}`);
